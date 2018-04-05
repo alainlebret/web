@@ -1,0 +1,234 @@
+<!-- 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            CONCEPTION DE SITES WEB 
+%                    Cours spécialité informatique 1ère année
+%                              LYCEE DORIAN, PARIS
+%                                  2015-2016
+%                                Alain Lebret
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-->
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+	<title>Conception de sites Web (partie 1)</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+</head>
+<body class="list">
+	<header class="caption">
+		<h1>Lycée Dorian, BTS SN-IR</h1>
+		<p>2015-2016</p>
+	</header>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide cover" id="Cover"><div>
+		<h2>Conception de sites Web</h2>
+		<h3>Introduction</h3> 
+		<p><a href="mailto:alain.rene.lebret@gmail.com">Alain Lebret</a></p>
+		<img src="pictures/cover2.png" alt="">
+<!--	<img src="pictures/cover.jpg" alt=""> -->
+		<!--
+			To apply styles to the certain slides
+			set slide ID to get needed elements
+		-->
+		<style>
+			#Cover h2 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:70px;
+			}
+			#Cover h3 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:40px;
+			}
+			#Cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+			}
+			#Cover p a {
+				color:#FFF;
+			}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide cover" id="Worst"><div>
+<!--		<h2>Le plus horrible</h2> -->
+		<img src="pictures/worst-website.jpg" alt="" title="" />
+		<style>
+			#Worst h2 {
+				color:#FFF;
+			}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide cover" id="Better"><div>
+<!--		<h2>Beaucoup mieux</h2> -->
+		<img src="pictures/better-website.jpg" alt="" title="" />
+		<style>
+			#Better h2 {
+				color:#FFF;
+			}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>Plan</h2>
+		<ul>
+            <li>Introduction</li>
+			<li>Fond &amp; Forme : HTML et CSS</li>
+			<li>Pages dynamiques côté client avec Javascript</li>
+			<li>Pages dynamiques côté serveur</li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout"><div>
+		<h2>Introduction</h2>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="http1"><div>
+		<h2>HTTP (<em>HyperText Transfert Protocol</em>)</h2>
+		<p><center><object type="image/svg+xml" data="pictures/modele-client-serveur.svg" width="600">Votre navigateur ne supporte pas SVG</object></center></p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="http2"><div>
+		<h2>HTTP (<em>HyperText Transfert Protocol</em>)</h2>
+		<ul>
+		    <li>Protocole de communication client/serveur</li>
+			<li>Utilise <a href="http://tools.ietf.org/html/rfc793">TCP</a> 
+			    (<em>Transfert Control Protocol</em>)</li> 
+		    <li>Port <strong>80</strong></li>
+			<li>RFC <a href="http://tools.ietf.org/html/rfc2616">2616</a> (1999) et <a href="http://tools.ietf.org/html/rfc7230">7230</a>-7240 (2014)</li>
+            <li>Visualiser les requêtes HTTP brutes
+                <ul>
+                  <li>Greffon LiveHTTPHeaders (<a href="https://addons.mozilla.org/fr/firefox/addon/live-http-headers/">Firefox</a>, <a href="https://chrome.google.com/webstore/detail/live-http-headers/iaiioopjkcekapmldfgbebdclcnpgnlo/">Chrome</a> )</li>
+                  <li>Analyseur de paquets : <a href="https://www.wireshark.org/">Wireshark</a>, <a href="https://kismetwireless.net/">Kismet</a>, <a href="http://www.tcpdump.org/">tcpdump</a></li>
+                </ul></li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="http3"><div>
+		<h2>HTTP : Demande de page (requête <code>GET</code>)</h2>
+		<p><center><object type="image/svg+xml" data="pictures/modele-client-serveur1.svg" width="600">Votre navigateur ne supporte pas SVG</object></center></p>
+		<pre>
+<code><mark>GET http://www.lycee-dorian.org HTTP/1.1</mark></code>
+        </pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="http4"><div>
+		<h2>HTTP : Demande de page (requête <code>GET</code>)</h2>
+		<pre>
+<code><mark>GET www.lycee-dorian.org HTTP/1.1</mark></code>
+<code>Host: www.lycee-dorian.org</code>
+<code>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</code>
+<code>Accept-Encoding: gzip, deflate, sdch</code>
+<code>Accept-Language: fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4</code>
+<code>User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko)</code> <code>Chrome/41.0.2272.76 Safari/537.36</code>
+        </pre>
+		<style>
+			#http4 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="http5"><div>
+		<h2>HTTP : Réponse du serveur</h2>
+		<pre>
+<code><mark>HTTP/1.1 200 OK</code>
+<code>Cache-Control: no-cache, no-store, must-revalidate</code>
+<code>Connection: Keep-Alive</code>
+<code>Content-Encoding: gzip</code>
+<code>Content-Length: 12036</code>
+<code>Content-Type: text/html;charset=UTF-8</code>
+<code>Date: Mon, 07 Sep 2015 14:24:35 GMT</code>
+<code>Keep-Alive: timeout=15, max=87</code>
+<code>Server: Apache</code>
+<code>...</code>
+        </pre>
+		<style>
+			#http5 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="http6"><div>
+		<h2>HTTP : Envoi de données (requête <code>GET</code>)</h2>
+		<p><center><object type="image/svg+xml" data="pictures/modele-client-serveur2.svg" width="600">Votre navigateur ne supporte pas SVG</object><br />Sans modification des données distantes (recherche)</center></p>
+		<pre><code>GET http://www.commentcamarche.net/search/index.html<mark>?q=java</mark></code></pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="http7"><div>
+		<h2>HTTP : Envoi de données (requête <code>POST</code>)</h2>
+		<p><center><object type="image/svg+xml" data="pictures/modele-client-serveur3.svg" width="600">Votre navigateur ne supporte pas SVG</object><br />Avec modification des données distantes (formulaire)</center></p>
+		<pre><code>POST /www.commentcamarche.net/register/_xhr__signup/</code></pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="https1"><div>
+		<h2>HTTPS : Un HTTP sécurisé</h2>
+		<ul>
+		    <li>Protocole HTTP</li>
+		    <li>Couche de chiffrement 
+		        <a href="http://tools.ietf.org/html/rfc5246">TLS</a><sup>*</sup> (<em>Transport
+		        Secure Layer</em>) ou 
+		        <a href="http://tools.ietf.org/html/rfc6101">SSL</a> (<em>Secure 
+		        Socket Layer</em>) + Certificat</li>
+			<li>Port <strong>443</strong>
+			<li>RFC <a href="http://tools.ietf.org/html/rfc2818">2818</a> (2000)</li>
+		</ul>
+		<p class="note">(*) Version actuelle : 1.2 (1.0 vulnérable)</p></center>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="references"><div>
+		<h2>Références</h2>
+		<ul>Sites
+            <li>Site du W3C (<em>World Wide Web Consortium</em>) : <a href="http://www.w3.org">http://www.w3.org</a></li>
+            <li>Manuel du développeur : <a href="http://www.w3.org/html/wg/drafts/html/master/Overview.html">http://www.w3.org/html/wg/drafts/html/master/Overview.html</a></li>
+			<li>Tutoriels : <a href="http://www.w3schools.com/">http://www.w3schools.com/</a></li>
+			<li>Validation HTML / CSS : <a href="http://validator.w3.org/">http://validator.w3.org</a> /
+			<a href="http://jigsaw.w3.org/css-validator/">http://jigsaw.w3.org/css-validator</a></li>
+		</ul>
+		<ul>Livres
+			<li>Rodolphe Rimelé. <em>HTML 5 : Une référence pour le développeur Web</em>, Eyrolles (2013)</li>
+			<li>Mathieu Nébra. <em>Réalisez votre site Web avec HTML5 et CSS3</em>, Site du Zéro (2011)</li>
+			<li>Shelley Powers. <em>Débuter en JavaScript</em>, Eyrolles (2007)</li>
+		</ul>
+		<style>
+			#references li {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout" id="SeeMore"><div>
+		<h2><img src="pictures/logoDorian.png" alt="">&nbsp;<a href="https://github.com/alainlebret">github.com/alainlebret</a></h2>
+		<style>
+			#Picture h2 {
+				color:#FFF;
+				}
+			#SeeMore h2 {
+				font-size:100px
+				}
+			#SeeMore img {
+				width:0.90em;
+				height:0.72em;
+				}
+		</style>
+	</div></section>
+	<p class="badge"><a href="https://github.com/alainlebret">github.com/alainlebret</a></p>
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"><div></div></div>
+	<script src="shower/shower.min.js"></script>
+	<!-- Copyright © 2015 Alain Lebret -->
+</body>
+</html>

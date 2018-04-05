@@ -1,0 +1,815 @@
+<!-- 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            CONCEPTION DE SITES WEB 
+%                    Cours spécialité informatique 1ère année
+%                              LYCEE DORIAN, PARIS
+%                                  2015-2016
+%                                 Alain Lebret
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-->
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+	<title>Conception de sites Web (partie 3)</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+</head>
+<body class="list">
+	<header class="caption">
+		<h1>Lycée Dorian, BTS SN-IR</h1>
+		<p>2015-2016</p>
+	</header>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide cover" id="Cover"><div>
+		<h2>Conception de sites Web</h2>
+		<h3>Dynamisation côté navigateur avec Javascript</h3> 
+		<p><a href="mailto:alain.rene.lebret@gmail.com">Alain Lebret</a></p>
+		<img src="pictures/cover2.png" alt="">
+<!--	<img src="pictures/cover.jpg" alt=""> -->
+		<!--
+			To apply styles to the certain slides
+			set slide ID to get needed elements
+		-->
+		<style>
+			#Cover h2 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:70px;
+			}
+			#Cover h3 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:40px;
+			}
+			#Cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+			}
+			#Cover p a {
+				color:#FFF;
+			}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout"><div>
+		<h2>Introduction</h2>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js1"><div>
+		<h2>Où insérer du Javascript dans une page HTML</h2>
+		<ul>
+			<li>Directement dans le HTML entre les balises 
+             <code>&lt;script&gt;</code> et <code>&lt;/script&gt;</code></li>
+			<li class="next"><strong>Mieux</strong> : Dans un fichier séparé 
+            <code>.js</code> et appelé via l'attribut <code>src</code> de 
+            la balise <code>&lt;script&gt;</code></li>
+         <li class="next"><strong>Où</strong> : Juste avant la balise de 
+            fermeture <code>&lt;/body&gt;</code>
+            après que les éléments de la page aient été tous chargés</li> 
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js2"><div>
+      <h2>Page HTML avec script</h2>
+      <pre>
+        <code>&lt;!DOCTYPE html&gt;</code>
+        <code>&lt;html lang="fr"&gt;</code>
+        <code>  &lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;/head&gt;</code>
+        <code>  &lt;body&gt;</code>
+        <code>    <mark class="comment">&lt;!-- Tout votre code HTML --&gt;</mark></code>
+        <code>    <mark>&lt;script&gt;</mark></code>
+        <code>      document.write( "&lt;h2&gt;Un titre niveau 2&lt;/h2&gt;" );</mark></code>
+        <code>    <mark>&lt;/script&gt;</mark></code>
+        <code>  &lt;/body&gt;</code>
+        <code>&lt;/html&gt;</code>
+		</pre>
+		<style>
+			#js2 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js3"><div>
+      <h2>Page HTML avec script</h2>
+      <pre>
+        <code>&lt;!DOCTYPE html&gt;</code>
+        <code>&lt;html lang="fr"&gt;</code>
+        <code>  &lt;head&gt;&lt;meta charset="utf-8" /&gt;&lt;/head&gt;</code>
+        <code>  &lt;body&gt;</code>
+        <code>    <mark class="comment">&lt;!-- Tout votre code HTML --&gt;</mark></code>
+        <code>    <mark>&lt;script <mark class="important">src="scripts/mon_code.js"</mark>&gt;</mark></code>
+        <code>    <mark>&lt;/script&gt;</mark></code>
+        <code>  &lt;/body&gt;</code>
+        <code>&lt;/html&gt;</code>
+		</pre>
+		<style>
+			#js3 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js4"><div>
+      <h2>Page HTML avec script</h2>
+      <p>Le script se trouve juste apès ce paragraphe !!!</p>
+      <script>
+      document.write( "<h2>Un titre niveau 2</h2>" );
+      </script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js5"><div>
+		<h2>Javascript : un langage (pseudo)-objet</h2>
+		<ul>
+		   <li class="next">Syntaxe &asymp; langage Java</li>
+         <li class="next">Un objet : propriétés + méthodes (fonctions) + objets</li>
+         <li class="next">Objet de plus haut niveau hiérarchique dans un navigateur : <code>window</code></li>
+         <li class="next"><code>window</code> contient l'objet <code>document</code></li>
+         <li class="next"><code>document</code> fournit un accès à la structure du document HTML</li>
+	 	</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js5_1"><div>
+		<h2>Hiérarchie des éléments d'une page HTML</h2>
+<p><center><object type="image/svg+xml" data="pictures/dom0.svg" width="800">Votre navigateur ne supporte pas SVG</object></center></p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js5_1_1"><div>
+      <h2>Page HTML avec script</h2>
+      <p>Le script se trouve juste apès ce paragraphe !!!</p>
+      <script>
+      document.write( "window.location : " + window.location + "\n" );
+      document.write( "window.document.images[0] : " + window.document.images[0].src + "\n" );
+      </script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js5_2"><div>
+		<h2>Hiérarchie des éléments d'une page HTML</h2>
+      <pre>
+        <code>&lt;form action="..." name="formulaire" method=post&gt;</code>
+        <code>  &lt;p&gt;Nom : &lt;input name="nom" size=50&gt;&lt;/p&gt;</code>
+        <code>  &lt;p&gt;Prénom : &lt;input name="prenom" size=40&gt;&lt;/p&gt;</code>
+        <code>  &lt;input type=submit value="Envoi"&gt;</code>
+        <code>  &lt;input type=reset value="Remise à zéro"&gt;</code>
+        <code>&lt;/form&gt;</code>
+		</pre>
+		<ul>
+		   <li class="next">Lecture / écriture <code>document.forms[0].elements[1].value</code>, ici <code>prenom</code></li>
+	 	</ul>
+		<style>
+			#js5_2 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js5_3"><div>
+		<h2>Hiérarchie des éléments d'une page HTML</h2>
+		<ul>Nombreuses variables et fonctions sur chaque élément :
+		   <li class="next"><code>document.write("texte")</code> : écrit du texte dans la page HTML</li>
+		   <li class="next"><code>form.submit()</code> : force l'envoi du formulaire</li>
+		   <li class="next"><code>input.focus()</code> : amène le curseur de saisie dans le champ</li>
+		   <li class="next"><code>window.setInterval(fonction, nbMillisecondes)</code> : exécute un traitement périodiquement</li>
+		   <li class="next"><code>window.alert("message")</code> : affiche un message dans une boite de dialogue</li>
+		   <li class="next"><code>window.confirm("message")</code> : affiche une boite de dialogue oui/non</li>
+		   <li class="next"><code>window.prompt("message", valeur par défaut)</code> : affiche une boite de dialogue permettant de saisir une valeur</li>
+		   <li class="next">etc.</li>
+	 	</ul>
+		<style>
+			#js5_3 li {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js6"><div>
+		<h2>Types, variables et portée</h2>
+		<ul>
+            <li class="next">Types de base : nombres, chaînes de caractères, booléens</li>
+			<li class="next">Faiblement typé :</li>
+            <ul>
+               <li class="next">Type déterminé au moment de l'affectation</li>
+               <li class="next">Une variable peut à tout moment changer de type</li>
+            </ul>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js6_1"><div>
+		<h2>Déclaration de variables</h2>
+		<ul>
+         <li>Déclaration avec (locale) ou sans (globale) mot-clé <code>var</code></li>
+         <li>Pas de visibilité locale à un bloc</li>
+		</ul>
+      <pre class="next">
+         <code>&lt;script&gt;</code>
+         <code>&nbsp;&nbsp;var compteurMax = 12; // valeur entière</code>
+         <code>&nbsp;&nbsp;compteurMax = 5.35; // valeur réelle</code>
+         <code>&lt;/script&gt;</code>
+      </pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js7"><div>
+		<h2>Fonctions</h2>
+		<ul>
+			<li>Mot-clé <code>function</code></li>
+		</ul>
+      <pre class="next">
+         <code>&lt;script&gt;</code>
+         <code>&nbsp;&nbsp;<mark>function</mark> estPair( nombre ) {</code>
+         <code>&nbsp;&nbsp;&nbsp;&nbsp;return ( nombre % 2 == 0 ) ? "pair" : "impair";</code>
+         <code>&nbsp;&nbsp;}</code>
+         <code>...</code> 
+         <code>&nbsp;&nbsp;document.write( "12 est un nombre " + estPair( 12 ) );</code>
+         <code>&lt;/script&gt;</code>
+      </pre>
+		<style>
+			#js7 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js8"><div>
+		<h2>Fonctions</h2>
+		<ul>
+			<li>Mot-clé <code>function</code></li>
+		</ul>
+      <script>
+         function estPair( nombre ) {
+            return ( nombre % 2 == 0 ) ? "pair" : "impair";
+         }
+         document.write( "12 est un nombre " + estPair( 12 ) );
+      </script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js9"><div>
+		<h2>Tableaux</h2>
+		<ul>
+			<li>Mot-clé <code>Array</code> (constructeur)</li>
+		</ul>
+      <pre class="next">
+         <code>&lt;script&gt;</code>
+         <code>&nbsp;&nbsp;var tab = <mark>new Array</mark>( 12, "Java", "C" );</code>
+         <code>&nbsp;&nbsp;document.write( "&lt;ul&gt;" );</code>
+         <code>&nbsp;&nbsp;for ( var i=0; i&lt;tab.length; i++ ) {</code>
+         <code>&nbsp;&nbsp;&nbsp;&nbsp;document.write( "&lt;li&gt;Elément " + i + " : " + tab[ i ] + "&lt;/li&gt;" );</code>
+         <code>&nbsp;&nbsp;}</code>
+         <code>&nbsp;&nbsp;document.write( "&lt;/ul&gt;" );</code>
+         <code>...</code> 
+         <code>&lt;/script&gt;</code>
+      </pre>
+		<style>
+			#js9 pre {
+				font-size:18px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js10"><div>
+		<h2>Tableaux</h2>
+		<ul>
+			<li>Mot-clé <code>Array</code> (constructeur)</li>
+		</ul>
+      <script>
+         var tab = new Array( 12, "Java", "C" );
+		 document.write("<ul>");
+         for ( var i=0; i<tab.length; i++ ) {
+           document.write( "<li>Elément " + i + " : " + tab[ i ] + "</li>" );
+         }
+		 document.write("</ul>");
+      </script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js11"><div>
+		<h2>DOM (<em>Document Object Model</em>) du W3C</h2>
+		<ul>
+         <li>Décrit l'arborescence des 
+            imbrications de balises d'un document</li>
+		</ul>
+		<center>
+		<img src="pictures/dom.png" width="530" alt="" class="next">
+   </center>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js12"><div>
+		<h2>DOM : Arborescence</h2>
+		<ul>
+         <li>Noeuds : balises ("éléments"), attributs, commentaires, etc.</li>
+         <li class="next">Noeuds terminaux (feuilles) : texte</li>         
+         <li class="next">Noeuds accessibles <em>via</em> attributs <code>id</code> ou <code>name</code></li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js13"><div>
+		<h2>DOM : Types de noeuds</h2>
+		<table>
+      <caption>Types de noeuds DOM (<code>nodeType</code>)</caption>
+		<tr>
+			<th scope="col">Type de noeud</th>
+			<th>Constante (numéro)</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<th scope="row"><code>Document</code></th>
+			<td><code>Node.DOCUMENT_NODE (0)</code></td>
+			<td>document (racine du DOM)</td>
+		</tr>
+		<tr>
+			<th scope="row"><code>Element</code></th>
+			<td><code>Node.ELEMENT_NODE (1)</code></td>
+			<td>balise HTML</td>
+		</tr>
+		<tr>
+			<th scope="row"><code>Attr</code></th>
+			<td><code>Node.ATTRIBUTE_NODE (2)</code></td>
+			<td>attribut d'un élément</td>
+		</tr>
+		<tr>
+			<th scope="row"><code>Text</code></th>
+			<td><code>Node.TEXT_NODE (3)</code></td>
+			<td>texte à l'intérieur d'une balise</td>
+		</tr>
+		<tr>
+			<th scope="row"><code>Comment</code></th>
+			<td><code>Node.COMMENT_NODE (8)</code></td>
+			<td>commentaire HTML</td>
+		</tr>
+		<tr>
+			<th scope="row"><code>DocumentFragment</code></th>
+			<td><code>Node.DOCUMENT_FRAGMENT_NODE (11)</code></td>
+			<td>sous-arbre de DOM hors document</td>
+		</tr>
+		</table>
+		<style>
+			#js13 table {
+				font-size:18px;
+				background-color: white;
+				}
+				#js13 tr,td {
+					font-size:18px;
+					background-color: white;
+					}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js14"><div>
+		<h2>Javascript et DOM</h2>
+		<ul>
+         <li>Hiérarchie de classes pour parcourir et manipuler le DOM d'un document :
+             <code>Node</code>, <code>Element</code>, <code>HTMLElement</code>, etc.</li>
+			<li class="next">Des méthodes et des propriétés</li>
+         <li class="next">Type / Nom des noeuds : propriétés <code>nodeType</code> / <code>nodeName</code></li>
+		</ul>
+      <pre class="next">
+      <code >&lt;p id="p15"&gt;&lt;/p&gt;</code>
+      <code >&lt;script&gt;</code>
+      <code >   var p = document.getElementById("p15");</code>
+      <code >   var type = <mark>p.nodeType</mark>, nom = <mark>p.nodeName</mark>;</code>
+      <code >   p.innerHTML = "Je suis l'élément " + nom + " de type " + type;</code>
+      <code>&lt;/script&gt;</code>
+   </pre>
+	<style>
+		#js14 pre {
+			font-size:16px;
+			}
+	</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js15"><div>
+		<h2>Javascript et DOM</h2>
+		<ul>
+         <li>Hiérarchie de classes pour parcourir et manipuler le DOM d'un document :
+             <code>Node</code>, <code>Element</code>, <code>HTMLElement</code>, etc.</li>
+			<li>Des méthodes et des propriétés</li>
+         <li>Type / Nom des noeuds : propriétés <code>nodeType</code> / <code>nodeName</code></li>
+		</ul>
+      <p id="p15"></p>
+      <script>
+         var p = document.getElementById("p15");
+         var type = p.nodeType;
+         var nom = p.nodeName;
+         p.innerHTML = "Je suis l'élément <strong>" + nom.toLowerCase() + "</strong> de type <strong>" + type + "<strong>";
+      </script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js16"><div>
+		<h2>Javascript et DOM : parents et enfants</h2>
+		<ul>Soit le noeud <code>n</code>
+         <li class="next">son noeud parent <code>var p = n.parentNode</code></li>
+         <li class="next">ses enfants : <code>var enfants = n.childNodes</code></li>
+         <li class="next">son premier enfant : 
+                          <code>n.firstChild</code> ou
+                          <code>n.firstElementChild</code></li>
+         <li class="next">son dernier enfant : 
+                          <code>n.lastChild</code> ou
+                          <code>n.lastElementChild</code></li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js17"><div>
+		<h2>Javascript et DOM : accès à un noeud</h2>
+		<ul>
+         <li>Méthode d'accès à un noeud par <code>id</code> : <code>getElementById( id )</code></li>
+		</ul>
+      <pre class="next">
+        <code>  &lt;body&gt;</code>
+        <code>    &lt;p <mark>id="p17_1"</mark>&gt;&lt;/p&gt;</code>
+        <code>    &lt;p <mark>id="p17_2"</mark>&gt;&lt;/p&gt;</code>
+        <code>    &lt;script&gt;</code>
+        <code>      var p = document.<mark>getElementById("p17_2");</code>
+        <code>    &lt;/script&gt;</code>
+        <code>  &lt;/body&gt;</code>
+      </pre>
+		<style>
+			#js17 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js18"><div>
+		<h2>Javascript et DOM : modifier un noeud</h2>
+		<ul>
+         <li>Propriété : <code>innerHTML</code></li>
+		</ul>
+      <pre class="next">
+        <code>  &lt;body&gt;</code>
+        <code>    &lt;p id="p18"&gt;&lt;/p&gt;</code>
+        <code>    &lt;script&gt;</code>
+        <code>      var p = document.getElementById("p18");</code>
+        <code>      p.<mark>innerHTML</mark> = "Bienvenue dans mon paragraphe" ;</code>
+        <code>    &lt;/script&gt;</code>
+        <code>  &lt;/body&gt;</code>
+      </pre>
+		<style>
+			#js18 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js18_2"><div>
+		<h2>Javascript et DOM : modifier un noeud</h2>
+		<ul onclick=modifierNoeud()>
+         <li>Propriété : <code>innerHTML</code></li>
+		</ul>
+      <code>&lt;p id="p18"&gt;</code><p id="p18"></p><code>&lt;/p&gt;</code>
+      <script>
+	  function modifierNoeud() {
+        var p = document.getElementById("p18");
+        p.innerHTML = "Bienvenue dans mon paragraphe" ;
+	}
+      </script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js19"><div>
+		<h2>Javascript et DOM : valeur d'un noeud</h2>
+		<ul>
+         <li>Propriétés : <code>nodeValue</code> ou <code>data</code></li>
+		</ul>
+      <pre class="next">
+        <code>    &lt;p id="p19_1"&gt;p19_1 : Bienvenue !&lt;/p&gt;</code>
+        <code>    &lt;p id="p19_2"&gt;&lt;/p&gt;</code>
+        <code>    &lt;script&gt;</code>
+        <code>      var p = document.getElementById("p19_1").firstChild;</code>
+        <code>      var v = p.<mark>nodeValue</mark>;</code>
+        <code>      document.getElementById("p19_2").innerHTML = 'p19_1 contient : "' + v + '"';</code>
+        <code>    &lt;/script&gt;</code>
+      </pre>
+		<style>
+			#js19 pre {
+				font-size:18px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js19_2"><div>
+		<h2>Javascript et DOM : valeur d'un noeud</h2>
+		<ul onclick=valeurNoeud()>
+         <li>Propriétés : <code>nodeValue</code> ou <code>data</code></li>
+		</ul>
+        <p id="p19_1">p19_1 : Bienvenue !</p>
+        <code>&lt;p id="p19_2"&gt;</code><p id="p19_2"></p><code>&lt;/p&gt;</code>
+        <script>
+        function valeurNoeud() {
+          var p = document.getElementById("p19_1").firstChild;
+          var v = p.data;
+          document.getElementById("p19_2").innerHTML = 'p19_1 contient : "' + v + '"';
+       }
+         </script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js20"><div>
+		<h2>Javascript et DOM : accès à des noeuds</h2>
+		<ul>
+			<li>Méthode : <code>getElementsByTagName()</code></li>
+		</ul>
+      <pre>
+        <code>    &lt;p&gt;&lt;/p&gt;</code>
+        <code>    &lt;p&gt;&lt;/p&gt;</code>
+        <code>    &lt;script&gt;</code>
+        <code>      var tab_p = document.<mark>getElementsByTagName("p")</mark>;</code>
+        <code>      tab_p[0]</mark>.innerHTML = "Blablabla";</code>
+        <code>      tab_p[1]</mark>.innerHTML = "Bliblibli";</code>
+        <code>    &lt;/script&gt;</code>
+      </pre>
+		<style>
+			#js20 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js20_2"><div>
+		<h2>Javascript et DOM : accès à des noeuds</h2>
+		<ul onclick=accesNoeud()>
+			<li>Méthode : <code>getElementsByTagName()</code></li>
+		</ul>
+        <code>&lt;p&gt;</code><p></p><code>&lt;/p&gt;</code>
+        <code>&lt;p&gt;</code><p></p><code>&lt;/p&gt;</code>
+        <script>
+        function accesNoeud() {
+			var tab_p = document.getElementById("js20_2").getElementsByTagName("p");
+           tab_p[0].innerHTML = "Blablabla";
+           tab_p[1].innerHTML = "Bliblibli";
+       }
+        </script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js21"><div>
+		<h2>Javascript et DOM : accès aux attributs</h2>
+		<ul>
+			<li>Méthodes : <code>getAttribute()</code> et <code>setAttribute()</code></li>
+		</ul>
+      <pre>
+        <code>    &lt;p&gt;&lt;a href="http://www.freebsd.org/" id="l21_1"&gt;FREEBSD&lt;/a&gt;&lt;/p&gt;</code>
+        <code>    &lt;p&gt;&lt;a href="http://www.debian.org/" id="l21_2"&gt;DEBIAN&lt;/a&gt;&lt;/p&gt;</code>
+        <code>    &lt;script&gt;</code>
+        <code>      var lien1 = document.getElementById("l21_1").<mark>getAttribute('href')</mark>;</code>
+        <code>      var lien2 = document.getElementById("l21_2").getAttribute('href');</code>
+        <code>      document.getElementById("l21_1").<mark>setAttribute('href', lien2)</mark>;</code>
+        <code>      document.getElementById("l21_2").setAttribute('href', lien1);</code>
+        <code>    &lt;/script&gt;</code>
+      </pre>
+		<style>
+			#js21 pre {
+				font-size:18px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js21_2"><div>
+		<h2>Javascript et DOM : accès aux attributs</h2>
+		<ul onclick=accesAttributs()>
+			<li>Méthodes : <code>getAttribute()</code> et <code>setAttribute()</code></li>
+		</ul>
+        <p><a href="http://www.freebsd.org/" id="l21_1">FREEBSD</a></p>
+        <p><a href="http://www.debian.org/" id="l21_2">DEBIAN</a></p>
+        <script>
+        function accesAttributs() {
+        var lien1 = document.getElementById("l21_1").getAttribute('href');
+        var lien2 = document.getElementById("l21_2").getAttribute('href');
+        document.getElementById("l21_1").setAttribute('href', lien2);
+        document.getElementById("l21_2").setAttribute('href', lien1);
+     }
+        </script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js22"><div>
+		<h2>Javascript et DOM : accès aux attributs</h2>
+		<ul>
+			<li>Accès aux attributs par les propriétés : exemple <code>href</code> pour l'élément <code>a</code></li>
+		</ul>
+      <pre>
+        <code>    &lt;p&gt;&lt;a href="http://www.freebsd.org/" id="l22_3"&gt;FREEBSD&lt;/a&gt;&lt;/p&gt;</code>
+        <code>    &lt;p&gt;&lt;a href="http://www.debian.org/" id="l22_4"&gt;DEBIAN&lt;/a&gt;&lt;/p&gt;</code>
+        <code>    &lt;script&gt;</code>
+        <code>      var lien3 = document.getElementById("l22_3").<mark>href</mark>;</code>
+        <code>      var lien4 = document.getElementById("l22_4").href;</code>
+        <code>      document.getElementById("l22_3")<mark>.href</mark> = lien4;</code>
+        <code>      document.getElementById("l22_4").href = lien3;</code>
+        <code>    &lt;/script&gt;</code>
+      </pre>
+		<style>
+			#js22 pre {
+				font-size:18px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js22_2"><div>
+		<h2>Javascript et DOM : accès aux attributs</h2>
+		<ul onclick=accesAttributs2()>
+			<li>Accès aux attributs par les propriétés : exemple <code>href</code> pour l'élément <code>a</code></li>
+		</ul>
+        <p><a href="http://www.freebsd.org/" id="l22_3">FREEBSD</a></p>
+        <p><a href="http://www.debian.org/" id="l22_4">DEBIAN</a></p>
+        <script>
+        function accesAttributs2() {
+        var lien3 = document.getElementById("l22_3").href;
+        var lien4 = document.getElementById("l22_4").href;
+        document.getElementById("l22_3").href = lien4;
+        document.getElementById("l22_4").href = lien3;
+     }
+        </script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js23" onclick=enjoliver()><div>
+		<h2>Javascript et DOM : événements</h2>
+		<ul>
+			<li>Les événements commencent en général par <code>on</code></li>
+		</ul>
+      <pre><code>&lt;div id="dom10" <mark>onclick=enjoliver()</mark>&gt;&lt;p&gt;Il faut cliquer ici&lt;/p&gt;&lt;/div&gt;</code>
+        <code>&lt;script&gt;</code>
+        <code>function enjoliver(){</code>
+        <code>  var p0 = document.getElementById("dom10").getElementsByTagName("p")[0];</code>
+        <code>  var i = Math.floor(Math.random()*6)+1, j = Math.floor(Math.random()*6)+1;</code>
+        <code>  var polices = new Array("Arial", "Helvetica", "Palatino", "Courier New", "Verdana", "Impact");</code>
+         <code>  var tailles = new Array("9px", "14px", "18px", "22px", "28px", "32px");</code>
+         <code>  p0.style.fontSize = tailles[i-1]; p0.style.fontFamily = polices[j-1];</code>
+         <code>  p0.innerHTML = "Bonjour à tous";</code>
+       <code>}</code>
+        <code>&lt;/script&gt;</code>
+      </pre>     
+		<style>
+			#js23 pre {
+				font-size:15px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js23_2"><div>
+		<h2>Javascript et DOM : événements</h2>
+		<ul onclick=enjoliver()>
+			<li>Les événements commencent en général par <code>on</code></li>
+		</ul>
+        <code>&lt;p&gt;</code><div id="js23_2"><p>Cliquez dans la liste à puces</p></div><code>&lt;/p&gt;</code>
+        <script>
+        function enjoliver(){
+          var page = document.getElementById("js23_2").getElementsByTagName("p")[0];
+          var i = Math.floor(Math.random() * 6) + 1;
+          var j = Math.floor(Math.random() * 6) + 1;
+          var k = Math.floor(Math.random() * 6) + 1;
+          var polices = new Array("Arial", "Helvetica", "Times New Roman", "Courier New", "Verdana", "Impact");
+          var tailles = new Array("64px", "72px", "22px", "28px", "32px", "56px");
+          var couleurs = new Array("black", "gray", "orchid", "red", "green", "navy");
+          page.style.fontSize = tailles[i-1];
+          page.style.fontFamily = polices[j-1];
+          page.style.color = couleurs[k-1];
+          page.innerHTML = "Bonjour à tous";
+       }
+        </script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js24"><div>
+		<h2>Javascript et DOM : créer et insérer des éléments</h2>
+		<ul>
+			<li>Création : <code>createElement()</code> puis ajout d'attributs</li>
+			<li class="next">Insertion : <code>appendChild()</code></li>
+		</ul>
+      <pre class="next">
+        <code>    &lt;p id="p24"&gt;&lt;/p&gt;</code>
+        <code>    &lt;script&gt;</code>
+        <code>      var im = <mark>document.createElement("img")</mark>;</code>
+        <code>      im.<mark>src</mark> = "pictures/firefox.png";</code>
+        <code>      im.<mark>alt</mark> = "Logo de Firefox";</code>
+        <code>      document.getElementById("p24")<mark>.appendChild(im)</mark>;</code>
+        <code>    &lt;/script&gt;</code>
+      </pre>
+		<style>
+			#js24 pre {
+				font-size:18px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js24_2"><div>
+		<h2>Javascript et DOM : créer et insérer des éléments</h2>
+		<ul onclick=ajouter()>
+			<li>Création : <code>createElement()</code> puis ajout d'attributs</li>
+			<li>Insertion : <code>appendChild()</code></li>
+		</ul>
+        <p id="p24"></p>
+        <script>
+		function ajouter(){
+        var im = document.createElement('img');
+        im.src = 'pictures/firefox.png';
+        im.alt = 'Logo de Firefox';
+        im.width = '150';
+        document.getElementById("p24").appendChild(im);
+	}
+        </script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js25"><div>
+		<h2>Javascript et DOM : remplacer des éléments</h2>
+		<ul>
+			<li>Remplacer un élément : <code>replaceChild()</code></li>
+		</ul>
+      <pre>
+        <code>    &lt;p id="p25"&gt;&lt;a href="http://www.debian.org/"&gt;DEBIAN&lt;/a&gt;&lt;/p&gt;</code>
+        <code>    &lt;script&gt;</code>
+        <code>      var p = document.getElementById("p25");</code>
+        <code>      var im = <mark>document.createElement("img")</mark>;</code>
+        <code>      im.<mark>src</mark> = "pictures/firefox.png";</code>
+        <code>      im.<mark>alt</mark> = "Logo de Firefox";</code>
+        <code>      p.<mark>replaceChild(im, p.firstChild)</mark>;</code>
+        <code>    &lt;/script&gt;</code>
+      </pre>
+		<style>
+			#js25 pre {
+				font-size:18px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js25_2"><div>
+		<h2>Javascript et DOM : remplacer des éléments</h2>
+		<ul onclick=remplacer()>
+			<li>Remplacer un élément : <code>replaceChild()</code></li>
+		</ul>
+        <p id="p25"><a href="http://www.debian.org/">DEBIAN</a> - Cliquez dans la liste à puces ci-dessus !</p>
+        <script>
+        function remplacer(){
+        var p = document.getElementById("p25");
+        var im = document.createElement("img");
+        im.src = "pictures/firefox.png";
+        im.alt = "Logo de Firefox";
+        im.width = '200';
+        p.replaceChild(im, p.firstChild);
+     }
+        </script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js26"><div>
+		<h2>Javascript et DOM : supprimer un élément</h2>
+		<ul>
+			<li>Supprimer un élément : <code>removeChild()</code></li>
+		</ul>
+      <pre>
+        <code>    &lt;p id="p26"&gt;&lt;img src="pictures/firefox.png" id="im26" /&gt;&lt;/p&gt;</code>
+        <code>    &lt;script&gt;</code>
+        <code>      var p = document.getElementById("p26");</code>
+        <code>      var im = document.getElementById("im26");</code>
+        <code>      p.<mark>removeChild(im)</mark>;</code>
+        <code>    &lt;/script&gt;</code>
+      </pre>
+		<style>
+			#js26 pre {
+				font-size:18px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="js26_2"><div>
+		<h2>Javascript et DOM : supprimer un élément</h2>
+		<ul id="cliquer26">
+			<li>Supprimer un élément : <code>removeChild()</code></li>
+		</ul>
+        <p id="p26"><img src="pictures/firefox.png" alt="" width="200" id="im26" /> - Cliquez dans la liste à puces ci-dessus !</p>
+        <script>
+          var element = document.getElementById("cliquer26");
+          var p = document.getElementById("p26");
+          var im = document.getElementById("im26");
+          var c = 0;
+          
+          function supprimerElement(){
+                p.removeChild(im);
+          }
+          element.addEventListener('click', supprimerElement, false);
+        </script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout" id="SeeMore"><div>
+		<h2><img src="pictures/logoDorian.png" alt="">&nbsp;<a href="http://frosch74.free.fr">frosch74.free.fr</a></h2>
+		<style>
+			#Picture h2 {
+				color:#FFF;
+				}
+			#SeeMore h2 {
+				font-size:100px
+				}
+			#SeeMore img {
+				width:0.90em;
+				height:0.72em;
+				}
+		</style>
+	</div></section>
+	<p class="badge"><a href="http://frosch74.free.fr">frosch74.free.fr</a></p>
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"><div></div></div>
+	<script src="shower/shower.min.js"></script>
+	<!-- Copyright © 2015 Alain Lebret -->
+
+</body>
+</html>

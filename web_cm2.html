@@ -1,0 +1,2082 @@
+<!-- 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            CONCEPTION DE SITES WEB 
+%                    Cours spécialité informatique 1ère année
+%                              LYCEE DORIAN, PARIS
+%                                  2015-2016
+%                                 Alain Lebret
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+-->
+<!DOCTYPE HTML>
+<html lang="fr">
+<head>
+	<title>Conception de sites Web (partie 2)</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+</head>
+<body class="list">
+	<header class="caption">
+		<h1>Lycée Dorian, BTS SN-IR</h1>
+		<p>2015-2016</p>
+	</header>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide cover" id="Cover"><div>
+		<h2>Conception de sites Web</h2>
+		<h3>Fond &amp; Forme : HTML et CSS</h3> 
+		<p><a href="mailto:alain.rene.lebret@gmail.com">Alain Lebret</a></p>
+		<img src="pictures/cover2.png" alt="">
+<!--	<img src="pictures/cover.jpg" alt=""> -->
+		<!--
+			To apply styles to the certain slides
+			set slide ID to get needed elements
+		-->
+		<style>
+			#Cover h2 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:70px;
+			}
+			#Cover h3 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:40px;
+			}
+			#Cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+			}
+			#Cover p a {
+				color:#FFF;
+			}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout"><div>
+		<h2>Introduction</h2>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>HTML (<em>HyperText Markup Language</em>)</h2>
+		<h3><strong>Gérer et organiser le contenu d'une page Web</strong> : texte, liens, images, etc.</h3>
+		<ul>
+			<li>HTML 1 (1991) Première version créée par Tim Berners-Lee</li>
+			<li>HTML 2 (1994) Règles et fonctionnement W3C <sup>*</sup> </li>
+			<li>HTML 3 (1996) Ajout des tableaux, applets, scripts, 
+                    etc.</li>
+			<li>HTML 4 (1998) <em>frames</em>, améliorations
+                    tableaux et formulaires, feuilles de style</li>
+			<li>HTML 5 (?) Inclusion de vidéos, 
+                    amélioration de l'agencement, etc.</li>
+		</ul>
+		<p class="note">(*) <em>World Wide Web Consortium</em></p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>CSS (<em>Cascading Style Sheet</em> <sup>*</sup>)</h2>
+		<h3><strong>Gérer l'apparence d'une page Web</strong> : agencement, 
+		    positionnement, décoration, couleurs, taille du texte, etc.</h3>
+		<ul>
+			<li>CSS 1 (1996) Couleurs, marges, polices de caractères, etc.</li>
+			<li>CSS 2 (1999) Amélioration du positionnement</li>
+			<li>CSS 3 (?) Bordures arrondies, dégradés, ombres, etc.</li>
+		</ul>
+		<p class="note">(*) Feuille de style en français</p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>Sans CSS</h2>
+		<figure>
+		<img src="pictures/sans_css.png" with="600" alt="">
+		</figure>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>Avec CSS</h2>
+		<figure>
+		<img src="pictures/avec_css.png" widyh="600" alt="">
+		</figure>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>Quel(s) outil(s) pour développer ?</h2>
+		<ul>1ère solution
+			<li>Un <strong>éditeur de texte</strong> avec ou sans coloration syntaxique</li>
+			<li>Les validateurs <a href="http://validator.w3.org/">HTML</a> /
+			<a href="http://jigsaw.w3.org/css-validator/">CSS</a></li>
+			<li>Des débogueurs pour Javascript, PHP, etc. </li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>Quel(s) outil(s) pour développer ?</h2>
+		<ul>2ème solution
+			<li>Un <strong>système de gestion de contenu</strong> (CMS) <center><object type="image/svg+xml" data="pictures/cms2.svg" width="600">Votre navigateur ne supporte pas SVG</object></center></li>
+			<li>Les validateurs <a href="http://validator.w3.org/">HTML</a> /
+			<a href="http://jigsaw.w3.org/css-validator/">CSS</a></li>
+			<li>Des débogueurs pour Javascript, PHP, etc. </li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout"><div>
+		<h2>Bases HTML</h2>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html1"><div>
+		<h2>Balises HTML</h2>
+		<ul>
+			<li>Les pages HTML sont formées de balises invisibles dans le 
+			    navigateur</li>
+			<li>Les balises sont entourées de chevrons <code>&lt;</code> et 
+			    <code>&gt;</code></li>
+			<li>Les balises indiquent la nature du texte qu'elles encadrent :
+			    titres, paragraphes, images, etc.</li>
+			<li>Deux types : les balises en paires et les balises orphelines</li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html2"><div>
+		<h2>Balises HTML en paires</h2>
+		<ul>
+			<li>Elles encadrent du texte et indiquent sa nature</li>
+		</ul>
+		<pre>
+		  <code><mark>&lt;h1&gt;</mark>Ceci est un titre très important<mark>&lt;/h1&gt;</mark></code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html3"><div>
+		<h2>Balises HTML orphelines</h2>
+		<ul>
+			<li>Elles permettent d’insérer un élément à un endroit précis</li>
+		</ul>
+		<pre>
+		  <code><mark>&lt;image /&gt;</mark></code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html4"><div>
+		<h2>Attributs de balises</h2>
+		<ul>
+			<li>Les attributs fournissent des options aux balises en paires
+			    ou orphelines</li>
+		</ul>
+		<pre>
+		  <code>&lt;image <mark>src="photo.jpg"</mark> alt="" /&gt;</code>
+		</pre>
+		<pre>
+		  <code>&lt;q <mark>cite="http://exemple.org/boileau/2345.html"</mark>&gt;Ce qui
+                se conçoit bien s'énonce clairement.&lt;/q&gt;</code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html5"><div>
+      <h2>Page HTML minimale</h2>
+      <pre>
+        <code><mark>&lt;!DOCTYPE html&gt;</mark></code>
+        <code><mark>&lt;html lang="fr"&gt;</mark></code>
+        <code>  <mark>&lt;head&gt;</mark></code>
+        <code>    &lt;title&gt;Ma première page&lt;/title&gt;</code>
+        <code>    &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;</code>
+        <code>  <mark>&lt;/head&gt;</mark></code>
+        <code>  <mark>&lt;body&gt;</mark></code>
+        <code>    Mon premier texte ... <mark class="comment">&lt;!-- Commentaire --&gt;</mark></code>
+        <code>  <mark>&lt;/body&gt;</mark></code>
+        <code><mark>&lt;/html&gt;</mark></code>
+		</pre>
+		<style>
+			#html5 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html5_2"><div>
+      <h2>Page HTML minimale</h2>
+      <pre>
+        <code>&lt;!DOCTYPE html&gt;</code>
+        <code>&lt;html lang="fr"&gt;</code>
+        <code>  <mark>&lt;head&gt;</mark></code>
+        <code>    <mark>&lt;title&gt;</mark>Ma première page<mark>&lt;/title&gt;</mark></code>
+        <code>    <mark>&lt;meta http-equiv="Content-Type" content="text/html; <mark class="important">charset=utf-8</mark>" /&gt;</mark></code>
+        <code>  <mark>&lt;/head&gt;</mark></code>
+        <code>  &lt;body&gt;</code>
+        <code>    Mon premier texte ... &lt;!-- Commentaire --&gt;</code>
+        <code>  &lt;/body&gt;</code>
+        <code>&lt;/html&gt;</code>
+		</pre>
+		<style>
+			#html5_2 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html6"><div>
+		<h2>Paragraphe</h2>
+		<ul>
+			<li>La balise en paires <code>&lt;p&gt;</code> permet d'encadrer 
+			    un paragraphe</li>
+			<li>La balise <code>&lt;br /&gt;</code> permet un passage à la
+			    ligne mais doit être évitée</li>
+		</ul>
+		<pre>
+		  <code><mark>&lt;p&gt;</mark>Bienvenue sur                 mon site<mark>&lt;/p&gt;</mark></code>
+		  <code>&lt;p&gt;Ou encore <mark>&lt;br /&gt;</mark> Bienvenue sur mon site&lt;/p&gt;</code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html6_2"><div>
+		<h2>Paragraphe</h2>
+		<ul>
+			<li>La balise en paires <code>&lt;p&gt;</code> permet d'encadrer 
+			    un paragraphe</li>
+			<li>La balise <code>&lt;br /&gt;</code> permet un passage à la
+			    ligne mais doit être évitée</li>
+		</ul>
+		<p>Bienvenue sur                 mon site</p>
+	    <p>Ou encore <br />Bienvenue sur mon site</p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html7"><div>
+		<h2>Mise en valeur de texte</h2>
+		<ul>
+			<li>Les balises en paires <code>&lt;em&gt;</code>, 
+			    <code>&lt;strong&gt;</code> et <code>&lt;mark&gt;</code> 
+			    mettent en valeur du texte</li>
+		</ul>
+		<pre>
+		  <code>&lt;p&gt;Texte à <mark>&lt;em&gt;</mark>emphase<mark>&lt;/em&gt;</mark>&lt;br /&gt;</code>
+		  <code>&nbsp;&nbsp;&nbsp;Texte à <mark>&lt;strong&gt;</mark>forte emphase<mark>&lt;/strong&gt;</mark>&lt;br /&gt;</code>
+		  <code>&nbsp;&nbsp;&nbsp;Texte <mark>&lt;mark&gt;</mark>visuellement mis en valeur<mark>&lt;/mark&gt;</mark>&lt;/p&gt;</code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html7_2"><div>
+		<h2>Mise en valeur de texte</h2>
+		<ul>
+			<li>Les balises en paires <code>&lt;em&gt;</code>, 
+			    <code>&lt;strong&gt;</code> et <code>&lt;mark&gt;</code> 
+			    mettent en valeur du texte</li>
+		</ul>
+        <p>Texte à <em>emphase</em><br />
+		   Texte à <strong>forte emphase</strong><br />
+		   Texte <mark>visuellement mis en valeur</mark></p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html8"><div>
+		<h2>Paragraphe préformatté</h2>
+		<ul>
+			<li>La balise en paires <code>&lt;pre&gt;</code> permet d'encadrer
+			    un paragraphe préformatté qui respecte les espaces et passages
+			    à la ligne</li>
+		</ul>
+		<pre>
+		  <code><mark>&lt;pre&gt;</mark></code>
+		  <code>Pour chaque i faire</code>
+		  <code>&nbsp;&nbsp;p = tableau[i];</code>
+		  <code>&nbsp;&nbsp;afficher p;</code>
+		  <code><mark>&lt;/pre&gt;</mark></code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html8_2"><div>
+		<h2>Paragraphe préformatté</h2>
+		<ul>
+			<li>La balise en paires <code>&lt;pre&gt;</code> permet d'encadrer
+			    un paragraphe préformatté qui respecte les espaces et passages
+			    à la ligne</li>
+		</ul>
+		<pre><code>Pour chaque i faire
+  p = tableau[i];
+  afficher p;</code></pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html9"><div>
+		<h2>Titres</h2>
+		<ul>
+			<li>6 balises en paires pour les titres</li>
+		</ul>
+		<pre>
+		  <code><mark>&lt;h1&gt;</mark>Titre très important<mark>&lt;/h1&gt;</mark></code>
+		  <code><mark>&lt;h2&gt;</mark>Titre important<mark>&lt;/h2&gt;</mark></code>
+		  <code><mark>&lt;h3&gt;</mark>Titre un peu moins important<mark>&lt;/h3&gt;</mark></code>
+		  <code><mark>&lt;h4&gt;</mark>Titre pas trop important<mark>&lt;/h4&gt;</mark></code>
+		  <code><mark>&lt;h5&gt;</mark>Titre pas important<mark>&lt;/h5&gt;</mark></code>
+		  <code><mark>&lt;h6&gt;</mark>Titre vraiment pas important<mark>&lt;/h6&gt;</mark></code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<!-- 
+	<section class="slide" id="html9_2"><div>
+		<h2>Titres</h2>
+		<ul>
+			<li>6 balises de titres</li>
+		</ul>
+		<h1>Titre très important</h1>
+		<h2>Titre important</h2>
+		<h3>Titre un peu moins important</h3>
+		<h4>Titre pas trop important</h4>
+		<h5>Titre pas important</h5>
+		<h6>Titre vraiment pas important</h6>
+	</div></section>
+ -->
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html10"><div>
+		<h2>Liste à puces</h2>
+		<ul>
+			<li>Les balises en paires <code>&lt;ul&gt;</code> et 
+			<code>&lt;li&gt;</code> permettent de créer une liste à puces</li>
+		</ul>
+		<pre>
+		  <code><mark>&lt;ul&gt;</mark></code>
+		  <code><mark>&nbsp;&nbsp;&lt;li&gt;</mark>Des pommes<mark>&lt;/li&gt;</mark></code>
+		  <code><mark>&nbsp;&nbsp;&lt;li&gt;</mark>Des poires<mark>&lt;/li&gt;</mark></code>
+		  <code><mark>&nbsp;&nbsp;&lt;li&gt;</mark>Et des scoubidous bidous ouah<mark>&lt;/li&gt;</mark></code>
+		  <code><mark>&lt;/ul&gt;</mark></code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html10_2"><div>
+		<h2>Liste à puces</h2>
+		<ul>
+			<li>Les balises en paires <code>&lt;ul&gt;</code> et 
+			<code>&lt;li&gt;</code> permettent de créer une liste à puces</li>
+		</ul>
+		<p>
+		  <ul>
+		    <li>Des pommes</li>
+		    <li>Des poires</li>
+		    <li>Et des scoubidous bidous ouah</li>
+		  </ul>
+		</p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html11"><div>
+		<h2>Liste ordonnée</h2>
+		<ul>
+			<li>Les balises en paires <code>&lt;ol&gt;</code> et 
+			<code>&lt;li&gt;</code> permettent de créer une liste ordonnée</li>
+		</ul>
+		<pre>
+		  <code><mark>&lt;ol&gt;</mark></code>
+		  <code>&nbsp;&nbsp;<mark>&lt;li&gt;</mark>Monter le chariot<mark>&lt;/li&gt;</mark></code>
+		  <code>&nbsp;&nbsp;<mark>&lt;li&gt;</mark>Déposer la pièce<mark>&lt;/li&gt;</mark></code>
+		  <code>&nbsp;&nbsp;<mark>&lt;li&gt;</mark>Baisser le chariot<mark>&lt;/li&gt;</mark></code>
+		  <code><mark>&lt;/ol&gt;</mark></code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html11_2"><div>
+		<h2>Liste ordonnée</h2>
+		<ul>
+			<li>Les balises en paires <code>&lt;ol&gt;</code> et 
+			<code>&lt;li&gt;</code> permettent de créer une liste ordonnée</li>
+		</ul>
+		<p>
+		  <ol>
+		    <li>Monter le chariot</li>
+		    <li>Déposer la pièce</li>
+		    <li>Baisser le chariot</li>
+		  </ol>
+		</p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html11_3"><div>
+		<h2>Liste de définitions</h2>
+		<ul>
+			<li>Les balises en paires <code>&lt;dl&gt;</code>, <code>&lt;dt&gt;</code> et 
+			<code>&lt;dd&gt;</code> permettent de créer une liste de définitions</li>
+		</ul>
+		<pre>
+		  <code><mark>&lt;dl&gt;</mark></code>
+		  <code><mark>&lt;dt&gt;</mark>Elément 1<mark>&lt;/dt&gt;</mark> <mark>&lt;dd&gt;</mark>Bla bla bla bla bla<mark>&lt;/dd&gt;</mark></code>
+		  <code><mark>&lt;dt&gt;</mark>Elément 2<mark>&lt;/dt&gt;</mark> <mark>&lt;dd&gt;</mark>Ble ble ble ble ble<mark>&lt;/dd&gt;</mark></code>
+		  <code><mark>&lt;/dl&gt;</mark></code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html11_4"><div>
+		<h2>Liste de définitions</h2>
+		<ul>
+			<li>Les balises en paires <code>&lt;dl&gt;</code>, <code>&lt;dt&gt;</code> et 
+			<code>&lt;dd&gt;</code> permettent de créer une liste de définitions</li>
+		</ul>
+		<p>
+		  <dl>
+		    <dt><strong>Elément 1</strong></dt><dd>Bla bla bla bla bla</dd>
+		    <dt><strong>Elément 2</strong></dt><dd>Ble ble ble ble ble</dd>
+		  </dl>
+		</p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html12"><div>
+		<h2>Liens</h2>
+		<ul>
+			<li>La balise en paires <code>&lt;a&gt;</code> permet de 
+			manipuler les liens</li>
+		</ul>
+		<pre>
+		  <code class="next">&lt;p&gt;<mark>&lt;a href="http://www.google.fr"&gt;</mark>lien externe<mark>&lt;/a&gt;</mark>&lt;/p&gt;</code>
+		  <code class="next">&lt;p&gt;<mark>&lt;a href="./vide.html"&gt;</mark>page locale<mark>&lt;/a&gt;</mark>&lt;/p&gt;</code>
+		  <code class="next">&lt;p&gt;<mark>&lt;a href="#Ancre"&gt;</mark>ancre interne (ou externe)<mark>&lt;/a&gt;</mark>&lt;/p&gt;</code>
+		  <code class="next">&lt;p&gt;<mark>&lt;a href="../shower.zip"&gt;</mark>fichier à télécharger<mark>&lt;/a&gt;</mark>&lt;/p&gt;</code>
+		  <code class="next">&lt;p&gt;<mark>&lt;a href="mailto:al.capone@gmail.com"&gt;</mark>courriel<mark>&lt;/a&gt;</mark>&lt;/p&gt;</code>
+        </pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id=html12_2><div>
+		<h2>Liens</h2>
+		<ul>
+			<li>La balise en paires <code>&lt;a&gt;</code> permet de 
+			manipuler les liens</li>
+		</ul>
+		<p><a href="http://www.google.fr">lien externe</a><br />
+		  <a href="./vide.html">page locale</a><br />
+		  <a href="#html11_4">ancre interne (ou externe)</a><br />
+		  <a href="../shower.zip">fichier à télécharger<br />
+		  <a href="mailto:al.capone@gmail.com">courriel</a></p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html12_3"><div>
+		<h2>Ancre interne et attribut <code>id</code></h2>
+		<ul>
+			<li>L'attribut <code>id</code> permet d'identifier une balise particulière
+			    dans le contenu</li>
+			<li>La valeur prise par <code>id</code> doit être unique</li>
+		</ul>
+		<pre>
+		  <code>&lt;p <mark>id="p_17"</mark>&gt;Paragraphe important&lt;/p&gt;</code>
+		  <code>...</code>
+		  <code>&lt;p&gt;Retour au <mark>&lt;a href="#p_17"&gt;</mark>paragraphe important<mark>&lt;/a&gt;</mark>&lt;/p&gt;</code>
+        </pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html13"><div>
+		<h2>Images</h2>
+		<ul>Deux manières de coder une image
+			<li><strong>Bitmap</strong> : description des pixels
+			    <ul>
+			      <li>GIF (<em>Graphic Interchange Format</em>)</li>
+                  <li>JPEG (<em>Joint Photographic Experts Group</em></li>
+                  <li>PNG (<em>Portable Network Graphics</em>)</li>
+                </ul>
+            </li>
+            <li><strong>Vecteurs</strong> : description de "fonctions"
+                <ul>
+                  <li>SVG (<em>Scalable Vector Graphics</em>)</li>
+   		        </ul>
+   		    </li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html13_0"><div>
+		<h2>Images</h2>
+		<ul><li>Exemple d'images PNG et SVG</li></ul>
+		<p><center><object type="image/svg+xml" data="pictures/bitmap_vs_vectoriel.svg" width="600">Votre navigateur ne supporte pas SVG</object></center></p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html13_1"><div>
+		<h2>Images</h2>
+		<ul>
+			<li>La balise orpheline <code>&lt;img /&gt;</code> insère une 
+			    image (png, gif, jpeg)</li>
+		</ul>
+		<pre>
+		  <code>&lt;p&gt;<mark>&lt;img src="./pictures/spider_big.jpg" 
+		    alt="image araignée absente" 
+		    title="Argiope frelon 
+		           (Argiope bruennichi)" /&gt;</mark>&lt;/p&gt;</code>
+        </pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html13_2"><div>
+		<h2>Images</h2>
+		<ul>
+			<li>La balise orpheline <code>&lt;img /&gt;</code> insère une 
+			    image (png, jpeg, gif)</li>
+		</ul>
+		<p><center><img  src="./pictures/spider_big.jpg" alt="image araignée absente" title="Argiope frelon (Argiope bruennichi)" width="480" heigth="320" /></center></p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html13_3"><div>
+		<h2>Images</h2>
+		<ul>
+			<li>La balise orpheline <code>&lt;img /&gt;</code> insère une 
+			    image (png, jpeg, gif)</li>
+		</ul>
+		<p><center><img  src="./pictures/spider_big2.jpg" alt="image araignée absente" title="Argiope frelon (Argiope bruennichi)" width="480" heigth="320" /></center></p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html14"><div>
+		<h2>Images SVG</h2>
+		<ul>
+			<li>Les images SVG peuvent être visualisées avec la balise 
+			    en paires <code>&lt;object&gt;</code></li>
+		</ul>
+		<pre>
+		  <code><mark>&lt;object type="image/svg+xml"
+		&nbsp;&nbsp;data="pictures/logo.svg"&gt;</mark>Le 
+		navigateur ne supporte pas SVG
+        <mark>&lt;/object&gt;</mark></code>
+        </pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html14_2"><div>
+		<h2>Images SVG</h2>
+		<ul>
+			<li>Les images SVG peuvent être visualisées avec la balise 
+			    en paires <code>&lt;object&gt;</code></li>
+		</ul>
+		<p><center><object type="image/svg+xml" data="pictures/logo.svg" width="200">Votre navigateur ne supporte pas SVG</object></center></p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html15"><div>
+		<h2>Figures</h2>
+		<ul>
+			<li>La balise en paires <code>&lt;figure&gt;</code> permet 
+			d'insérer des figures chargées d'enrichir le texte.</li>
+		</ul>
+		<pre>
+		  <code><mark>&lt;figure&gt;</mark></code>
+		  <code>&nbsp;&nbsp;&lt;img src="pictures/android.png" alt="Logo Android" /&gt;</code>
+		  <code>&nbsp;&nbsp;&lt;img src="pictures/ios6.png" alt="Logo IOS 6" /&gt;</code>
+		  <code>&nbsp;&nbsp;<mark>&lt;figcaption&gt;</mark>Logos de systèmes mobiles<mark>&lt;/figcaption>&gt;</mark></code>
+		  <code><mark>&lt;/figure&gt;</mark></code>
+        </pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html15_2"><div>
+		<h2>Figures</h2>
+		<ul>
+			<li>La balise en paires <code>&lt;figure&gt;</code> permet 
+			d'insérer des figures chargées d'enrichir le texte.</li>
+		</ul>
+        <center><figure>
+		  <img src="pictures/android.png" alt="Logo Android" width="200" />
+		  <img src="pictures/ios6.png" alt="Logo IOS 6" width="200" />
+		  <figcaption>Logos de systèmes mobiles</figcaption>
+		</figure></center>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html16"><div>
+		<h2>Citations plutôt que plagiats</h2>
+		<ul>
+			<li><code>&lt;figure&gt;</code> permet 
+			aussi d'insérer des citations avec la balise en paires
+			<code>&lt;blockquote&gt;</code></li>
+		</ul>
+		<pre>
+		  <code>&lt;figure&gt;</code>
+		  <code>&nbsp;&nbsp;<mark>&lt;blockquote&gt;</mark></code>
+		  <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur ...&lt;/p&gt;</code>
+		  <code>&nbsp;&nbsp;<mark>&lt;/blockquote&gt;</mark></code>
+		  <code>&nbsp;&nbsp;&lt;figcaption&gt;Cicéron&lt;/figcaption&gt;</code>
+		  <code>&lt;/figure&gt;</code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="html16_2"><div>
+		<h2>Citations plutôt que plagiats</h2>
+		<ul>
+			<li><code>&lt;figure&gt;</code> permet 
+			aussi d'insérer des citations avec la balise en paires
+			<code>&lt;blockquote&gt;</code></li>
+		</ul>
+		<figure>
+			<blockquote>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+				   sed do eiusmod tempor incididunt ut labore et dolore magna 
+				   aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+				   ullamco laboris nisi ut aliquip ex ea commodo consequat...</p>
+			</blockquote>
+			<figcaption>Cicéron</figcaption>
+		</figure>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout"><div>
+		<h2>Mise en forme avec CSS</h2>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout" id="css_st1"><div>
+		<h2><em>Mise en place</em></h2>
+		<style>
+			#css_st1 h2 { font-size: 80px;	}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css2"><div>
+      <h2>Page HTML minimale liée à un CSS</h2>
+      <pre>
+        <code>&lt;!DOCTYPE html&gt;</code>
+        <code>&lt;html lang="fr"&gt;</code>
+        <code>  &lt;head&gt;</code>
+        <code>    &lt;meta charset="UTF-8" /&gt;</code>
+        <code>    <mark>&lt;link rel="stylesheet" href="./style.css" /&gt;</mark></code>
+        <code>    &lt;title&gt;Ma première page&lt;/title&gt;</code>
+        <code>  &lt;/head&gt;</code>
+        <code>  &lt;body&gt;</code>
+        <code>    Mon premier texte</code>
+        <code>  &lt;/body&gt;</code>
+        <code>&lt;/html&gt;</code>
+		</pre>
+		<style>
+			#css2 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css2_01"><div>
+      <h2>Page HTML minimale liée à un CSS</h2>
+      <center><object type="image/svg+xml" data="pictures/arborescence1.svg" width="400">Votre navigateur ne supporte pas SVG</object></center>
+		<style>
+			#css2_01 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css2_02"><div>
+      <h2>Page HTML minimale liée à un CSS</h2>
+      <center><object type="image/svg+xml" data="pictures/arborescence2.svg" width="400">Votre navigateur ne supporte pas SVG</object></center>
+		<style>
+			#css2_02 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css2_2"><div>
+		<h2>Structure de base d'un fichier CSS</h2>
+        <pre>
+          <code>sélecteur {</code>
+          <code>&nbsp;&nbsp;propriété_1: valeur_1;</code>
+          <code>&nbsp;&nbsp;propriété_2: valeur_2;</code>
+          <code>&nbsp;&nbsp;propriété_m: valeur_m;</code>
+          <code>}</code>
+        </pre>
+		<ul>
+			<li><strong>sélecteur</strong> : balise (<code>p</code>, <code>h1</code>, 
+			    etc.), identifiant <code>id</code> ou classe 
+			    <code>class</code></li>
+			<li><strong>propriété</strong> : attribut à appliquer (<code>font</code>,
+			    <code>color</code>, <code>margin</code>, etc.)</li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css3"><div>
+		<h2>Exemple</h2>
+        <pre>
+          <code>p {</code>
+          <code>&nbsp;&nbsp;color: dodgerblue;</code>
+          <code>}</code>
+        </pre>        
+        <pre>
+          <code>&lt;p&gt;Le texte du paragraphe&lt;/p&gt;</code>
+        </pre>  
+        <p class="next">Le texte du paragraphe</p>
+		<style>
+			#css3 p { color: dodgerblue;	}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css4"><div>
+		<h2>Pourquoi en <em>cascade</em> ?</h2>
+        <pre>
+          <code>p { color: dodgerblue; }</code>
+          <code>p { color: darkseagreen; }</code>
+          <code>p { color: mediumorchid; }</code>
+        </pre>        
+        <pre>
+          <code>&lt;p&gt;Le texte du paragraphe&lt;/p&gt;</code>
+        </pre>  
+        <p class="next">Le texte du paragraphe</p>
+		<style>
+			#css4 p { color: dodgerblue;	}
+			#css4 p { color: darkseagreen;	}
+			#css4 p { color: mediumorchid;	}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css5"><div>
+		<h2>Grouper les sélecteurs</h2>
+        <pre>
+          <code>em, h3 { color: darkseagreen; }</code>
+        </pre>        
+        <pre>
+          <code>&lt;h3&gt;Un titre&lt;/h3&gt;</code>
+          <code>&lt;p&gt;Le &lt;strong&gt;texte&lt;/strong&gt; du paragraphe&lt;/p&gt;</code>
+        </pre>  
+        <h3 class="next">Un titre</h3>
+        <p class="next">Le <strong>texte</strong> du paragraphe</p>
+		<style>
+			#css5 h3 { color: darkseagreen;	}
+			#css5 strong { color: darkseagreen;	}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css6"><div>
+		<h2>Attributs <code>id</code> et <code>class</code></h2>
+		<ul>
+			<li><code>id</code> et <code>class</code> permettent de varier le style des balises</li>
+			<li><code>id</code> est à utilisation <strong>unique</strong> 
+			    (cf. <a href="#html12">ancres</a>)</li>
+			<li><code>class</code> est à utilisation <strong>multiple</strong></li>
+		</ul>
+        <pre>
+          <code><mark>#nom_id</mark> { color: darkseagreen; }</code>
+        </pre>        
+        <pre>
+          <code><mark>.nom_classe</mark> { color: mediumorchid; }</code>
+        </pre>        
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css6_2"><div>
+		<h2>Attributs <code>id</code> et <code>class</code></h2>
+        <pre>
+          <code><mark>#logo</mark> { color: mediumorchid; }</code>
+        </pre>        
+        <pre><code>&lt;p <mark>id="logo"</mark>&gt;Logo du site&lt;/p&gt;</code></pre>  
+        <p class="next">Logo du site</p>        
+		<style>
+			#css6_2 p { color: mediumorchid;	}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css6_3"><div>
+		<h2>Attributs <code>id</code> et <code>class</code></h2>
+        <pre>
+          <code><mark>.attention</mark> { color: orangered; }</code>
+        </pre>        
+        <pre>
+          <code>&lt;h3 <mark>class="attention"</mark>&gt;Titre qui requiert l'attention&lt;/h3&gt;</code>
+          <code>&lt;p <mark>class="attention"</mark>&gt;Texte qui en requiert aussi&lt;/p&gt;</code>
+        </pre>  
+        <h3 class="next">Titre qui requiert l'attention</h3>
+        <p class="next">Texte qui en requiert aussi</p>
+		<style>
+			#css6_3 p { color: orangered;	}
+			#css6_3 h3 { color: orangered;	}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css7"><div>
+		<h2>La balise en paires <code>&lt;span&gt;</code></h2>
+		<ul>
+			<li>Met en forme du texte <strong>au sein d'un bloc</strong> (paragraphe, etc.)</li>
+		</ul>
+        <pre>
+          <code><mark>.genial</mark> { color: limegreen; font-size: 50px; }</code>
+        </pre>        
+        <pre>
+          <code>&lt;p&gt;Ceci est un texte </code>
+          &nbsp;&nbsp;&nbsp;&nbsp;<mark>&lt;span class="genial"&gt;</mark>génial<mark>&lt;/span&gt;</mark>&lt;/p&gt;</code>
+        </pre>  
+        <p>Ceci est un texte <span>génial</span></p>
+		<style>
+			#css7 span { color: limegreen;	font-size: 50px; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css8"><div>
+		<h2>Sélecteurs avancés</h2>
+		<ul>
+			<li>Sélecteur universel : <code><mark>*</mark> { ... }</code></li>
+			<li class="next">Balise S2 dans S1 : <code><mark>S1 S2</mark> { ... }</code></li>
+			<li class="next">Première balise S2 après S1 (même type) : <code><mark>S1 + S2</mark> { ... }</code></li>
+			<li class="next">Première balise S2 après S1 (types différents) : <code><mark>S1 ~ S2</mark> { ... }</code></li>
+			<li class="next">Balise S possédant l'attribut A : <code><mark>S[A]</mark> { ... }</code></li>
+			<li class="next">Balise S possédant l'attribut A de valeur v : <code><mark>S[A="v"]</mark> { ... }</code></li>
+			<li class="next">etc.</li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout" id="css_st2"><div>
+		<h2><em>Formatage du texte</em></h2>
+		<style>
+			#css_st2 h2 { font-size: 80px; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css9"><div>
+		<h2>Polices : propriété <code>font-family</code></h2>
+		<ul>
+		    <li>Polices courantes : Arial, Comic Sans MS, Courier New,
+		        Georgia, Times New Roman, Trebuchet MS, Verdana</li>
+		</ul>
+        <pre class="next">
+          <code>p { font-family: "Comic Sans MS", "Trebuchet MS"; }</code>
+        </pre>  
+        <p class="next">Ce texte utilise Trebuchet MS / <span>celui-ci est en Times New Roman</span></p>
+		<style>
+			#css9 span { font-family: "Times New Roman"; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css10"><div>
+		<h2>Taille du texte : propriété <code>font-size</code></h2>
+		<ul>
+		    <li>Unités absolues : cm, mm, in, pt, pc</li>
+		    <li>Unités relatives : <mark>em</mark> (normal : 1em), 
+		        <mark>px</mark>, <mark>%</mark> (normal : 100%), ex</li> 
+		</ul>
+        <pre class="next">
+          <code>p { font-size: 1em; }</code>
+        </pre>  
+        <p class="next">Ceci est un texte à 1.2em et <span>celui-ci à 0.5em</span></p>
+		<style>
+			#css10 span { font-size: 0.8em; }
+		</style>
+		<p class="note">Consulter <a href="http://www.w3.org/Style/Examples/007/units.fr.html">http://www.w3.org/Style/Examples/007/units.fr.html</a></p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css10_2"><div>
+		<h2>Taille du texte : propriété <code>font-size</code></h2>
+		<ul>Valeurs relatives prédéfinies :
+		    <li><code>xx-small</code> : minuscule</li>
+		    <li><code>x-small</code> : très petit</li>
+            <li><code>small</code> : petit</li>
+            <li><code>medium</code> : moyen</li>
+            <li><code>large</code> : grand</li>
+            <li><code>x-large</code> : très grand</li>
+            <li><code>xx-large</code> : vraiment très grand</li> 
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css11"><div>
+		<h2>Autres mises en forme du texte</h2>
+		<ul>
+		    <li class="next"><code>font-style</code> : normal, italic, oblique</li>
+		    <li class="next"><code>font-weight</code> : normal, bold</li>
+            <li class="next"><code>text-decoration</code> : none, underline, overline, line-through, blink</li>
+            <li class="next"><code>text-align</code> : left, right, center, justify</li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout" id="css_st3"><div>
+		<h2><em>Flottants</em></h2>
+		<style>
+			#css_st3 h2 { font-size: 80px; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css12"><div>
+		<h2>Flottants : propriété <code>float</code></h2>
+		<ul>
+		    <li>Positionnement <em>flottant</em> d'éléments (images, etc.)
+		        ou de blocs</li>
+		    <li>Valeurs : <code>left</code>, <code>right</code>, <code>center</code></li>
+		</ul>
+		<pre class="next">
+        <code>.flottant { float: <mark>right</mark>; }</code>
+        </pre>        
+		<pre class="next">
+        <code>&lt;p&gt;&lt;img src="firefox.png" class="flottant" 
+   alt="Flottant" /&gt; Lorem ipsum dolor sit 
+   amet, consectetur adipisicing elit, ...&lt;/p&gt;</code>
+        </pre>        
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css12_2"><div>
+		<h2>Flottants : propriété <code>float</code></h2>
+        <p><img src="pictures/firefox.png" alt="flottant" /> 
+           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed 
+           do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+           Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+           laboris nisi ut aliquip ex ea commodo consequat.</p>
+		<style>
+			#css12_2 img { clear: both; float: right; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css12_3"><div>
+		<h2>Flottants : propriété <code>float</code></h2>
+		<ul>
+		    <li>Positionnement <em>flottant</em> d'éléments (images, etc.)
+		        ou de blocs</li>
+		    <li>Valeurs : <code>left</code>, <code>right</code>, <code>center</code></li>
+		</ul>
+		<pre class="next">
+        <code>.flottant { float: <mark>left</mark>; }</code>
+        </pre>        
+		<pre class="next">
+        <code>&lt;p&gt;&lt;img src="firefox.png" class="flottant" 
+   alt="Flottant" /&gt; Lorem ipsum dolor sit 
+   amet, consectetur adipisicing elit, ...&lt;/p&gt;</code>
+        </pre>        
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css12_4"><div>
+		<h2>Flottants : propriété <code>float</code></h2>
+        <p><img src="pictures/firefox.png" alt="flottant" /> 
+           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed 
+           do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+           Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+           laboris nisi ut aliquip ex ea commodo consequat.</p>
+		<style>
+			#css12_4 img { clear: both; float: left; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout" id="css_st4"><div>
+		<h2><em>Couleurs</em></h2>
+		<style>
+			#css_st4 h2 { font-size: 80px; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css13"><div>
+		<h2>Couleurs</h2>
+		<ul>
+		    <li>Propriété couleur du texte : <code>color</code></li>
+		    <li class="next">Propriété de couleur de fond : <code>background-color</code></li> 
+		    <li class="next">16 couleurs prédéfinies : <em>white</em>, <em>silver</em>, <em>gray</em>,
+		        <em>black</em>, <em>red</em>, <em>green</em>, <em>blue</em>, etc.</li> 
+		    <li class="next">Couleur en hexadécimal : <code>#RRVVBB</code></li> 
+		    <li class="next">Couleur en RGB : <code>rgb(r, v, b)</code> (r, v et b dans [0;255])</li> 
+		    <li class="next">Couleur en RGB + opacité : <code>rgba(r, v, b, a)</code> (transparent : a = 0, opaque : a = 1.0)</li> 
+		</ul>
+		<p class="note">Utilisez peu de couleurs, des tons pastels (<a href="http://www.code-couleur.com/">www.code-couleur.com</a>)</p>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css13_2"><div>
+		<h2>Couleurs</h2>
+        <pre>
+          <code>body { background-color: hotpink; }</code>
+          <code>p { color: #000000; }</code>
+          <code>em { color: rgb(250, 250, 230); }</code>
+          <code>b { color: rgba(230, 230, 250, 0.8); }</code>
+        </pre>  
+        <pre>
+          <code>&lt;p&gt;Ceci est un texte à &lt;em&gt;emphase&lt;/em&gt; non 
+    &lt;b&gt;gras&lt;/b&gt;&lt;/p&gt; sur fond rose</code>
+        </pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css13_3"><div>
+		<h2>Couleurs</h2>
+        <pre>
+          <code>body { background-color: hotpink; }</code>
+          <code>p { color: #000000; }</code>
+          <code>em { color: rgb(250, 250, 230); }</code>
+          <code>b { color: rgba(230, 230, 250, 0.8); }</code>
+        </pre>  
+        <p>Ceci est un texte à <em>emphase</em> non <b>gras</b> sur fond rose</p>
+		<style>
+			#css13_3 em { color: rgb(250, 250, 230); }
+			#css13_3 b { color: rgba(230, 230, 250, 0.8); }
+			#css13_3 div { background-color: hotpink; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout" id="css_st5"><div>
+		<h2><em>Bordures</em></h2>
+		<style>
+			#css_st5 h2 { font-size: 80px; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css14"><div>
+		<h2>Bordures : propriété <code>border</code></h2>
+		<ul>
+		    <li>Trois valeurs : épaisseur, couleur et type</li>
+		    <li>Type : <code>none</code>, <code>solid</code>, <code>dotted</code>,
+		        <code>dashed</code>, <code>double</code>, etc.</li>
+		</ul>
+		<pre class="next">
+        <code>p { border: <mark>4px darkorchid solid</mark>; }</code>
+        </pre>
+		<p class="next"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+		   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+		   Ut enim ad minim veniam...</span></p>        
+		<style>
+			#css14 span { border: 4px darkorchid solid; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css14_2"><div>
+		<h2>Bordures : propriété <code>border</code></h2>
+		<ul>
+		    <li>Trois valeurs : épaisseur, couleur et type</li>
+		    <li>Type : <code>none</code>, <code>solid</code>, <code>dotted</code>,
+		        <code>dashed</code>, <code>double</code>, etc.</li>
+		</ul>
+		<pre class="next">
+        <code>p { border: <mark>3px dodgerblue dashed</mark>; }</code>
+        </pre>
+		<p class="next"><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+		   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+		   Ut enim ad minim veniam...</span></p>        
+		<style>
+			#css14_2 span { border: 2px dodgerblue dashed; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css14_3"><div>
+		<h2>Propriétés de bordures avancées</h2>
+		<ul>
+		    <li>Par morceaux avec <code>border-top</code>, 
+		        <code>border-bottom</code>, <code>border-left</code>, 
+		        <code>border-right</code> (mêmes valeurs que <code>border</code>) </li>
+		    <li>Arrondies : <code>border-radius</code> avec 
+		        4 angles (HG, HD, BD, BG)      
+		</ul>
+		<pre class="next">
+        <code>p { <mark>border-left: 15px olivedrab solid</mark>; }</code>
+        </pre>
+		<p class="next"><span>&nbsp;Lorem ipsum dolor sit amet, consectetur ...</span></p>        
+		<style>
+			#css14_3 span { border-left: 15px olivedrab solid; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css14_4"><div>
+		<h2>Propriétés de bordures avancées</h2>
+		<ul>
+		    <li>Par morceaux avec <code>border-top</code>, 
+		        <code>border-bottom</code>, <code>border-left</code>, 
+		        <code>border-right</code> (mêmes valeurs que <code>border</code>) </li>
+		    <li class="next">Arrondies : <code>border-radius</code> avec 
+		        4 angles (HG, HD, BD, BG)   
+		</ul>
+		<pre class="next">
+        <code>p { border: 5px darkorchid solid; 
+<mark>border-radius: 20px 20px 20px 20px</mark>; }</code>
+        </pre>
+		<p class="next"><span>&nbsp;Lorem ipsum dolor sit amet, consectetur...</span></p>        
+		<style>
+			#css14_4 span { border: 5px darkorchid solid; border-radius: 20px 20px 20px 20px; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="css15"><div>
+		<h2>Ombres</h2>
+		<ul>
+		    <li>Propriétés : <code>text-shadow</code> (texte) et 
+		        <code>box-shadow</code> (boite)</li>
+		    <li>4 valeurs : décalage horizontal, vertical, adoucissement, couleur</li>
+		</ul>
+		<pre class="next">
+        <code>p { border: 4px darkorchid solid; 
+&nbsp;&nbsp;&nbsp;<mark>box-shadow: 3px 3px 3px indigo</mark>; 
+&nbsp;&nbsp;&nbsp;<mark>text-shadow: 2px 2px 3px gainsboro;</mark> }</code>
+        </pre>
+		<p class="next"><span>Lorem ipsum dolor sit amet, consectetur adipisicing...</span></p>        
+		<style>
+			#css15 span { border: 5px darkorchid solid; box-shadow: 2px 2px 3px indigo; text-shadow: 2px 2px 3px gainsboro; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout" id="mep0"><div>
+		<h2>Mise en page</h2>
+<!--		<style>
+			#st2 h2 { font-size: 80px; }
+		</style> -->
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout" id="mep1"><div>
+		<h2><em>Blocs<br />&amp;<br />Positionnement dans les blocs</em></h2>
+		<style>
+			#mep1 h2 { font-size: 80px; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="mep3"><div>
+		<h2>Balises structurantes HTML5</h2>
+		<ul>Les balises structurantes de type "bloc" sont :
+		    <li class="next"><code>&lt;header&gt;</code> : en-tête de page</li>
+		    <li class="next"><code>&lt;footer&gt;</code> : pied de page</li>
+		    <li class="next"><code>&lt;nav&gt;</code> : menu de navigation</li>
+		    <li class="next"><code>&lt;section&gt;</code> : zone thématique</li>
+		    <li class="next"><code>&lt;article&gt;</code> : article indépendant relié à une section</li>
+		    <li class="next"><code>&lt;aside&gt;</code> : information complémentaire </li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="mep2"><div>
+		<h2>Balises structurantes HTML5</h2>
+		<center><object type="image/svg+xml" data="pictures/mise_en_page.svg" width="700">Votre navigateur ne supporte pas SVG</object></center>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="mep4"><div>
+		<h2>Propriétés des balises de type bloc</h2>
+		<ul>
+		    <li>Largeur/hauteur : <code>width</code> et <code>height</code> (px ou %)</li>
+		    <li class="next">Minimal/maximal : <code>min-width</code>, <code>min-height</code>,
+		        <code>max-width</code>, <code>max-height</code></li>
+		    <li class="next">Marge extérieure : <code>margin</code> ou <code>margin-top</code>,
+		        <code>margin-bottom</code>, <code>margin-left</code>,
+		        <code>margin-right</code>  (px)</li> 
+		    <li class="next">Marge intérieure : <code>padding</code> <code>padding-top</code>,
+		        <code>padding-bottom</code>, <code>padding-left</code>,
+		        <code>padding-right</code> (px)</li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="mep4_2"><div>
+		<h2>Propriétés des balises de type bloc</h2>
+		<pre>
+        <code>p { border: 1px blue solid; <mark>width: 50%</mark>; 
+<mark>margin: 10px</mark>; <mark>padding: 20px</mark>; }</code>
+        </pre>
+		<h6 class="next">&lt;p&gt;Lorem ipsum dolor sit amet, consectetur...&lt;/p&gt;</h6>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="mep4_3"><div>
+		<h2>Propriétés des balises de type bloc</h2>
+		<pre>
+        <code>p { border: 1px blue solid; <mark>width: 50%</mark>; 
+<mark>margin: 10px</mark>; <mark>padding: 20px</mark>; }</code>
+        </pre>
+		<h6 class="next">Lorem ipsum dolor sit amet, consectetur...</h6>        
+		<style>
+			#mep4_3 h6 { border: 1px blue solid; 
+			width: 50%; margin: 10px; padding: 20px; }
+		</style>	
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="mep5"><div>
+		<h2>Gestion des dépassements et césures dans les blocs</h2>
+		<ul>
+		    <li>Propriété <code>overflow</code> : <code>visible</code>, 
+		        <code>hidden</code>, <code>scroll</code>, 
+		        <code>auto</code></li>
+		    <li class="next">Propriété <code>word-wrap</code> permet de gérer les césures
+		        avec la valeur <code>break-word;</code></li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="mep5_2"><div>
+		<h2>Gestion des dépassements et césures dans les blocs</h2>
+		<pre>
+        <code>p { width: 40%; height: 100px; <mark>overflow: none</mark>; ... }</code>
+        </pre>
+		<h6 class="next">Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+		   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</h6>        
+		<style>
+			#mep5_2 h6 { width: 40%; height: 100px; border: 2px dodgerblue solid; overflow: none; word-wrap: break-word; }
+		</style>	
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="mep5_4"><div>
+		<h2>Gestion des dépassements et césures dans les blocs</h2>
+		<pre>
+        <code>p { width: 40%; height: 100px; <mark>overflow: visible</mark>; ... }</code>
+        </pre>
+		<h6 class="next">Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+		   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</h6>        
+		<style>
+			#mep5_4 h6 { width: 40%; height: 100px; border: 2px dodgerblue solid; overflow: visible; word-wrap: break-word; }
+		</style>	
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="mep5_3"><div>
+		<h2>Gestion des dépassements et césures dans les blocs</h2>
+		<pre>
+        <code>p { width: 40%; height: 100px; <mark>overflow: hidden</mark>; ... }</code>
+        </pre>
+		<h6 class="next">Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+		   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</h6>        
+		<style>
+			#mep5_3 h6 { width: 40%; height: 100px; border: 2px dodgerblue solid; overflow: hidden; word-wrap: break-word; }
+		</style>	
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="mep5_5"><div>
+		<h2>Gestion des dépassements et césures dans les blocs</h2>
+		<pre>
+        <code>p { width: 40%; height: 100px; <mark>overflow: scroll</mark>; ... }</code>
+        </pre>
+		<h6 class="next">Lorem ipsum dolor sit amet, consectetur adipisicing elit, 
+		   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</h6>        
+		<style>
+			#mep5_5 h6 { width: 40%; height: 100px; border: 2px dodgerblue solid; overflow: scroll; word-wrap: break-word; }
+		</style>	
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="mep6"><div>
+		<h2>Balise structurante universelle <code>&lt;div&gt;</code></h2>
+		<ul>
+		    <li>La balise en paires <code>&lt;div&gt;</code> peut être utilisée
+		        en complément des balises structurantes, mais de manière très
+		        <strong>parcimonieuse</strong></li>
+		    <li class="next">Les balises <code>&lt;div&gt;</code> peuvent être imbriquées les
+		        unes dans les autres pour réaliser des mises en page complexes</li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout" id="mep7"><div>
+		<h2><em>Positionnement des blocs<br />dans une page</em></h2>
+		<style>
+			#mep7 h2 { font-size: 80px; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="mep8"><div>
+		<h2>Positionner des blocs dans une page</h2>
+		<ul>
+  		  <li>Lorsque l'on ne précise aucun positionnement, les blocs se placent
+		      les uns au-dessous des autres</li>
+		  <li class=next">Il est possible de positionner un bloc en utilisant :
+		      <ul>
+		        <li class=next">Un bloc <em>flottant</em> : propriété 
+		            <code>float</code> déjà rencontrée</li>
+		        <li class="next">La propriété <code>position</code></li>
+		      </ul></li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="mep9"><div>
+		<h2>Positionner avec la propriété <code>position</code></h2>
+		<ul>
+		    <li>La propriété <code>position</code> peut prendre les valeurs : 
+             <code>static</code> (défaut), <code>absolute</code>,
+		        <code>fixed</code> ou <code>relative</code></li>
+		    <li class="next"><code>absolute</code> nécessite de définir la distance aux bords de 
+		        la page avec les propriétés : <strong>left</strong>,
+		        <strong>right</strong>, <strong>top</strong> et <strong>bottom</strong> <sup></sup></li>
+		    <li class="next"><code>fixed</code> se définit comme <code>absolute</code> mais l'élément reste fixé à l'écran</li>
+		    <li class="next"><code>relative</code> permet un déplacement du 
+              bloc depuis sa position initiale dans son père</li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="mep10"><div>
+		<h2>La propriété <code>display</code></h2>
+		<ul>
+		    <li>La propriété <code>display</code> modifie l'affichage standard d'un élément</li>
+		    <li class="next"><code>display</code> peut prendre les valeurs : <code>none</code>,
+		        <code>block</code> ou <code>inline-block</code></li>
+		    <li class="next"><code>none</code> supprime l'affichage d'un élément</li>
+		    <li class="next"><code>block</code> transforme un élément en bloc (ex : la balise &lt;a&gt;)</li>
+		    <li class="next"><code>inline-block</code> permet aux blocs de se placer les uns à côté
+		        des autres (ex : balise <code>&lt;nav&gt;</code> à gauche ou à droite)</li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout"><div>
+		<h2>HTML avancé</h2>
+<!--		<style>
+			#st2 h2 { font-size: 80px; }
+		</style> -->
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout" id="av1"><div>
+		<h2><em>Tableaux</em></h2>
+		<style>
+			#av1 h2 { font-size: 80px; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav1"><div>
+		<h2>Tableaux</h2>
+		<ul>
+		    <li>Les balise en paires <code>&lt;table&gt;</code>, 
+		        <code>&lt;th&gt;</code> (en-tête), <code>&lt;tr&gt;</code> (ligne), 
+		        et <code>&lt;td&gt;</code> (cellule) permettent de 
+		        manipuler les tableaux</li>
+		</ul>
+		<pre class="next">
+		<code>&lt;table&gt;</code>
+      <code>&lt;caption&gt;Codes des caractères spéciaux&lt;/caption&gt;</code>
+		<code>&nbsp;&nbsp;&lt;tr&gt;&lt;th scope="col"&gt;Caractère&lt;/th&gt;&lt;th&gt;Code UTF8&lt;/th&gt;&lt;th&gt;Code HTML&lt;/th&gt;&lt;/tr&gt;</code>
+		<code>&nbsp;&nbsp;&lt;tr&gt;&lt;td&gt;esperluette&lt;/td&gt;&lt;td&gt;0x26&lt;/td&gt;&lt;td&gt;&amp;amp;&lt;/td&gt;&lt;/tr&gt;</code>
+		<code>&nbsp;&nbsp;&lt;tr&gt;&lt;td>espace&lt;/td&gt;&lt;td&gt;0x20&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt</code>
+		<code>&nbsp;&nbsp;&lt;tr&gt&lt;td>É&lt;/td&gt;&lt;td>0xC389&lt;/td&gt&lt;td>&amp;Eacute;&lt;/td&gt&lt;/tr&gt</code>
+		<code>&lt;/table&gt;</code>
+		</pre>
+		<style>
+			#htmlav1 pre {
+				font-size:16px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav1_2"><div>
+		<h2>Tableaux</h2>
+		<ul>
+		    <li>Les balise en paires <code>&lt;table&gt;</code>, 
+		        <code>&lt;th&gt;</code> (en-tête), <code>&lt;tr&gt;</code> (ligne), 
+		        et <code>&lt;td&gt;</code> (cellule) permettent de 
+		        manipuler les tableaux</li>
+		</ul>
+		<table>
+      <caption>Codes des caractères spéciaux</caption>
+		<tr>
+			<th>Caractère</th>
+			<th>Code UTF8</th>
+			<th>Code HTML</th>
+		</tr>
+		<tr>
+			<td>esperluette</td>
+			<td>0x26</td>
+			<td>&amp;amp;</td>
+		</tr>
+		<tr>
+			<td>espace</td>
+			<td>0x20</td>
+			<td>&amp;nbsp;</td>
+		</tr>
+		<tr>
+			<td>É</th>
+			<td>0xC389</td>
+			<td>&amp;Eacute;</td>
+		</tr>
+		</table>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav1_3"><div>
+		<h2>Tableaux</h2>
+		<ul>
+		    <li>Les balise en paires <code>&lt;table&gt;</code>, 
+		        <code>&lt;th&gt;</code> (en-tête), <code>&lt;tr&gt;</code> (ligne), 
+		        et <code>&lt;td&gt;</code> (cellule) permettent de 
+		        manipuler les tableaux</li>
+		</ul>
+		<pre class="next">
+		<code>&lt;table&gt;</code>
+      <code>&lt;caption&gt;Codes des caractères spéciaux&lt;/caption&gt;</code>
+		<code>&nbsp;&nbsp;&lt;tr&gt;&lt;th scope="col"&gt;Caractère&lt;/th&gt;&lt;th&gt;Code UTF8&lt;/th&gt;&lt;th&gt;Code HTML&lt;/th&gt;&lt;/tr&gt;</code>
+		<code>&nbsp;&nbsp;&lt;tr&gt;&lt;th scope="row"&gt;esperluette&lt;/th&gt;&lt;td&gt;0x26&lt;/td&gt;&lt;td&gt;&amp;amp;&lt;/td&gt;&lt;/tr&gt;</code>
+		<code>&nbsp;&nbsp;&lt;tr&gt;&lt;th scope="row">espace&lt;/th&gt;&lt;td&gt;0x20&lt;/td&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt</code>
+		<code>&nbsp;&nbsp;&lt;tr&gt&lt;th scope="row">É&lt;/th&gt&lt;td>0xC389&lt;/td&gt;&lt;td>&amp;Eacute;&lt;/td&gt&lt;/tr&gt</code>
+		<code>&lt;/table&gt;</code>
+		</pre>
+		<style>
+			#htmlav1_3 pre {
+				font-size:16px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav1_4"><div>
+		<h2>Tableaux</h2>
+		<ul>
+		    <li>Les balise en paires <code>&lt;table&gt;</code>, 
+		        <code>&lt;tr&gt;</code> (ligne), <code>&lt;th&gt;</code> (en-tête)
+		        et <code>&lt;td&gt;</code> (cellule) permettent de 
+		        manipuler les tableaux</li>
+		</ul>
+		<table>
+      <caption>Codes des caractères spéciaux</caption>
+		<tr>
+			<th scope="col">Caractère</th>
+			<th>Code UTF8</th>
+			<th>Code HTML</th>
+		</tr>
+		<tr>
+			<th scope="row">esperluette</th>
+			<td>0x26</td>
+			<td>&amp;amp;</td>
+		</tr>
+		<tr>
+			<th scope="row">espace</th>
+			<td>0x20</td>
+			<td>&amp;nbsp;</td>
+		</tr>
+		<tr>
+			<th scope="row">É</th>
+			<td>0xC389</td>
+			<td>&amp;Eacute;</td>
+		</tr>
+		</table>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout" id="av2"><div>
+		<h2><em>Formulaires</em></h2>
+		<style>
+			#av2 h2 { font-size: 80px; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_1"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>La balise en paires <code>&lt;form&gt;</code>
+              permet d'insérer un formulaire</li>
+		</ul>
+		<pre class="next">
+		<code><mark>&lt;form&gt;</mark></code>
+		<code><mark>&lt;/form&gt;</mark></code>
+		</pre>
+		<style>
+			#htmlav2_1 pre {
+				font-size:16px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_2"><div>
+		<h2>Formulaires</h2>
+		<ul><code>&lt;form&gt;</code> possède deux attributs pour
+			communiquer avec le serveur :
+		    <li class="next"><mark><code>method</code></mark> : méthode d'envoi 
+              du formulaire (<code>GET</code> ou <code>POST</code>)</li>
+          <li class="next"><mark><code>action</code></mark> : nom du programme 
+             de traitement du formulaire (CGI, PHP)</li>
+		</ul>
+		<pre class="next">
+		<code>&lt;form  <mark>method="get"</mark> <mark>action="traiter_form.php"</mark>&gt;</code>
+		<code>&lt;/form&gt;</code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_3"><div>
+		<h2>Formulaires</h2>
+		<ul><code>&lt;form&gt;</code> possède deux attributs pour
+			communiquer avec le serveur :
+		    <li><mark><code>method</code></mark> : méthode d'envoi 
+              du formulaire (<code>GET</code> ou <code>POST</code>)</li>
+          <li><mark><code>action</code></mark> : nom du programme 
+             de traitement du formulaire (CGI, PHP)</li>
+		</ul>
+		<pre>
+		<code>&lt;form  <mark>method="post"</mark> <mark>action="traiter_form.php"</mark>&gt;</code>
+		<code>&lt;/form&gt;</code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_4"><div>
+		<h2>Formulaires</h2>
+		<ul><code>&lt;form&gt;</code> possède deux attributs pour
+			communiquer avec le serveur :
+		    <li><mark><code>method</code></mark> : méthode d'envoi 
+              du formulaire (<code>GET</code> ou <code>POST</code>)</li>
+          <li><mark><code>action</code></mark> : nom du programme 
+             de traitement du formulaire (CGI, PHP)</li>
+		</ul>
+		<pre>
+		<code>&lt;form  <mark>method="post"</mark> <mark>action="traiter_form.cgi"</mark>&gt;</code>
+		<code>&lt;/form&gt;</code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_5"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>Libellé : <code>&lt;label&gt;</code></li>
+          <li>Saisie monoligne : <code>&lt;input /&gt;</code></li>
+          <li>Saisie multilignes : <code>&lt;textarea&gt;</code></li>
+		</ul>
+		<pre class="next">
+		<code>&lt;form method="post" action="traiter_form.cgi"&gt;</code>
+		<code>&nbsp;&nbsp;<mark>&lt;label&gt;</mark>Entrez votre nom<mark>&lt;/label&gt;</mark> : 
+  <mark>&lt;input <mark class="important">type="text"</mark> name="nom" /&gt;</mark></code>
+		<code>&lt;/form&gt;</code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_6"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>Libellé : <code>&lt;label&gt;</code></li>
+          <li>Saisie monoligne : <code><mark>&lt;input /&gt;</mark></code></li>
+          <li>Saisie multilignes : <code>&lt;textarea&gt;</code></li>
+		</ul>
+		<form>
+		<label>Entrez votre nom</label> : 
+        <input type="text" name="nom" />
+      </form>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_7"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>Libellé : <code>&lt;label&gt;</code></li>
+          <li>Saisie monoligne : <code><mark>&lt;input /&gt;</mark></code></li>
+          <li>Saisie multilignes : <code>&lt;textarea&gt;</code></li>
+		</ul>
+		<pre>
+		<code>&lt;form method="post" action="traiter_form.cgi"&gt;</code>
+		<code>&nbsp;&nbsp;&lt;label&gt;Entrez votre mot de passe&lt;/label&gt; : 
+  <mark>&lt;input <mark class="important">type="password"</mark> name="motdepasse" /&gt;</mark></code>
+		<code>&lt;/form&gt;</code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_8"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>Libellé : <code>&lt;label&gt;</code></li>
+          <li>Saisie monoligne : <code><mark>&lt;input /&gt;</mark></code></li>
+          <li>Saisie multilignes : <code>&lt;textarea&gt;</code></li>
+		</ul>
+		<form>
+		<label>Entrez votre mot de passe</label> : 
+      <input type="password" name="motdepasse" />
+      </form>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_9"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>Libellé : <code>&lt;label&gt;</code></li>
+          <li>Saisie monoligne : <code>&lt;input /&gt;</code></li>
+          <li>Saisie multilignes : <code><mark>&lt;textarea&gt;</mark></code></li>
+		</ul>
+		<pre class="next">
+		<code>&lt;form method="post" action="traiter_form.cgi"&gt;</code>
+		<code>&nbsp;&nbsp;&lt;label&gt;</mark>Avez-vous des commentaires ?<mark>&lt;/label&gt;</code> 
+      <code>&nbsp;&nbsp;<mark>&lt;textarea name="commentaires" rows="5" cols="40"&gt;</mark> <mark>&lt;/textarea&gt;</code>
+		<code>&lt;/form&gt;</code>
+		</pre>
+		<style>
+			#htmlav2_9 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_10"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>Libellé : <code>&lt;label&gt;</code></li>
+          <li>Saisie monoligne : <code>&lt;input /&gt;</code></li>
+          <li>Saisie multilignes : <code>&lt;textarea&gt;</code></li>
+		</ul>
+		<form>
+		<label>Avez-vous des commentaires ?</label><br /> 
+      <textarea name="commentaires" cols="40" rows="5"></textarea>
+      </form>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_11"><div>
+		<h2>Formulaires</h2>
+		<ul>La balise <code>&lt;input&gt;</code> permet aussi d'insérer des
+          <li>Courriels : <code>type="email"</code></li>
+          <li>URLs : <code>type="url"</code></li>
+          <li>Numéros de téléphones : <code>type="tel"</code></li>
+          <li>Nombres : <code>type="number"</code></li>
+          <li>Dates : <code>type="date"</code></li>
+		    <li>Cases à cocher : <code>type="checkbox"</code></li>
+          <li>Boutons radio :  <code>type="radio"</code></li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_12"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>Les listes déroulantes sont gérées avec les balises 
+              <code>&lt;select&gt;</code> et <code>&lt;option&gt;</code></li>
+		</ul>
+		<pre class="next">
+		<code>&lt;form method="post" action="traiter_form.cgi"&gt;</code>
+		<code>&nbsp;&nbsp;<mark>&lt;select name="langages" id="langages"&gt;</mark></code> 
+		<code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="C"&gt;C&lt;/option&gt;</mark></code> 
+		<code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="C++"&gt;C++&lt;/option&gt;</mark></code> 
+		<code>&nbsp;&nbsp;&nbsp;&nbsp;...</code> 
+      <code>&nbsp;&nbsp;<mark>&lt;/select"&gt;</mark></code>
+		<code>&lt;/form&gt;</code>
+		</pre>
+		<style>
+			#htmlav2_12 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_13"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>Les listes déroulantes sont gérées avec les balises 
+              <code>&lt;select&gt;</code> et <code>&lt;option&gt;</code></li>
+		</ul>
+      <p>
+		<form>
+		<select name="langages" id="langages"> 
+		  <option value="C">C</option> 
+		  <option value="C++">C++</option> 
+		  <option value="HTML/CSS">HTML/CSS</option> 
+		  <option value="Javascript">Javascript</option> 
+		  <option value="SQL">SQL</option> 
+      </select>
+      </form>
+   </p>
+		<style>
+			#htmlav2_13 p {
+				font-size: 40px;
+			}
+			#htmlav2_13 form{
+				font-size:24px;
+			}
+			#htmlav2_13 select {
+				font-size:48px;
+			}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_14"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>La balise <code>&lt;input&gt;</code> permet enfin de créer le bouton d'envoi</li>
+		</ul>
+		<pre class="next">
+		<code>&lt;form method="post" action="traiter_form.php"&gt;</code>
+		<code>&nbsp;&nbsp;...</code> 
+		<code>&nbsp;&nbsp;<mark>&lt;input <mark class="important">type="submit"</mark> value="Soumettre"&gt;</mark></code> 
+		<code>&lt;/form&gt;</code>
+		</pre>
+		<style>
+			#htmlav2_14 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_15"><div>
+		<h2>Formulaires</h2>
+      <form>
+      <fieldset>
+       <legend>Coordonnées</legend> <!-- Titre du fieldset --> 
+       <label for="nom">Quel est votre nom ?</label>
+       <input type="text" name="nom" id="nom" /><br />
+       <label for="email">Quel est votre e-mail ?</label>
+       <input type="email" name="email" id="email" />
+   </fieldset>
+   <fieldset>
+       <legend>Cours d'informatique préférés</legend> <!-- Titre du fieldset -->
+       <input type="checkbox" name="algorithmique" id="algorithmique" /> <label for="algorithmique">Algorithmique</label><br/>
+       <input type="checkbox" name="Architecture" id="Architecture" /> <label for="Architecture">Architecture</label><br />
+       <input type="checkbox" name="reseaux" id="reseaux" checked /> <label for="reseaux">Réseaux</label><br />   
+    </fieldset>
+    <input type="submit" value="Soumettre" />
+    </form>	
+		<style>
+			#htmlav2_15 legend {
+				font-weight: bold;
+				}
+				#htmlav2_15 input[type="submit"] {
+					font-size:24px;
+					}
+		</style>
+    </div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_14_2"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>La balise <code>&lt;input&gt;</code> permet aussi un bouton de réinitialisation</li>
+		</ul>
+		<pre class="next">
+		<code>&lt;form method="post" action="traiter_form.php"&gt;</code>
+		<code>&nbsp;&nbsp;...</code> 
+		<code>&nbsp;&nbsp;<mark>&lt;input <mark class="important">type="reset"</mark> value="Effacer""&gt;</mark></code> 
+		<code>&lt;/form&gt;</code>
+		</pre>
+		<style>
+			#htmlav2_14_2 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_15_2"><div>
+		<h2>Formulaires</h2>
+      <form>
+      <fieldset>
+       <legend>Coordonnées</legend> <!-- Titre du fieldset --> 
+       <label for="nom">Quel est votre nom ?</label>
+       <input type="text" name="nom" id="nom" /><br />
+       <label for="email">Quel est votre e-mail ?</label>
+       <input type="email" name="email" id="email" />
+   </fieldset>
+   <fieldset>
+       <legend>Cours d'informatique préférés</legend> <!-- Titre du fieldset -->
+       <input type="checkbox" name="algorithmique" id="algorithmique" /> <label for="algorithmique">Algorithmique</label><br/>
+       <input type="checkbox" name="architecture" id="architecture" /> <label for="architecture">Architecture</label><br />
+       <input type="checkbox" name="reseaux" id="reseaux" checked /> <label for="reseaux">Réseaux</label><br />   
+    </fieldset>
+    <input type="reset" value="Effacer" />
+    </form>	
+		<style>
+			#htmlav2_15_2 legend {
+				font-weight: bold;
+				}
+			#htmlav2_15_2 input[type="reset"] {
+				font-size:24px;
+				}
+		</style>
+    </div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_15_3"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>L'événement <code>onsubmit</code> peut être intercepté</li>
+		    <li>Il permet d'exécuter des fonctions Javascript</li>
+		</ul>
+		<pre class="next">
+		<code>&lt;form <mark>onsubmit="enjoliver()"</mark>&gt;</code>
+		<code>&nbsp;&nbsp;...</code> 
+		<code>&nbsp;&nbsp;&lt;input type="text" /&gt;</code>
+		<code>&nbsp;&nbsp;<mark>&lt;input type="submit" value="Enjoliver"" /&gt;</mark></code> 
+		<code>&lt;/form&gt;</code>
+		</pre>
+		<style>
+			#htmlav2_15_3 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_15_4"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>L'événement <code>onsubmit</code> peut être intercepté</li>
+		    <li>Il permet d'exécuter des fonctions Javascript</li>
+		</ul>
+		<form onsubmit="window.alert('ATTENTION YOUR DISK IS BEING ERASED !!!!!')">
+		<input type="submit" value="Enjoliver" > 
+	    </form>
+		<style>
+			#htmlav2_15_4 input {
+				font-size:24px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_16"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>La balise <code>&lt;button&gt;</code> aussi permet de créer le bouton d'envoi</li>
+		</ul>
+		<pre class="next">
+		<code>&lt;form method="post" action="traiter_form.php"&gt;</code>
+		<code>&nbsp;&nbsp;...</code> 
+		<code>&nbsp;&nbsp;&lt;button <mark>type="submit"</mark>&gt;Soumettre&lt;/button&gt;</mark></code> 
+		<code>&lt;/form&gt;</code>
+		</pre>
+		<style>
+			#htmlav2_16 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_17"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>La balise <code>&lt;button&gt;</code> aussi permet de créer le bouton d'envoi</li>
+		</ul>
+		<form method="post" action="traiter_form.php">
+		<button type="submit">Soumettre</button> 
+      </form>
+		<style>
+			#htmlav2_17 button {
+				font-size:48px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_18"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>La balise <code>&lt;button&gt;</code> permet aussi de remettre à zéro le formulaire</li>
+		</ul>
+		<pre class="next">
+		<code>&lt;form method="post" action="traiter_form.php"&gt;</code>
+		<code>&nbsp;&nbsp;...</code> 
+		<code>&nbsp;&nbsp;&lt;button <mark>type="reset"</mark>&gt;Nettoyer&lt;/button&gt;</mark></code> 
+		<code>&lt;/form&gt;</code>
+		</pre>
+		<style>
+			#htmlav2_18 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_19"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>La balise <code>&lt;button&gt;</code> permet aussi de remettre à zéro le formulaire</li>
+		</ul>
+		<form>
+      <fieldset>
+       <legend>Coordonnées</legend> <!-- Titre du fieldset --> 
+       <label for="nom">Quel est votre nom ?</label>
+       <input type="text" name="nom" id="nom" /><br />
+       <label for="email">Quel est votre e-mail ?</label>
+       <input type="email" name="email" id="email" />
+   </fieldset>
+   <fieldset>
+       <legend>Cours d'informatique préférés</legend> <!-- Titre du fieldset -->
+       <input type="checkbox" name="algorithmique" id="algorithmique" /> <label for="algorithmique">Algorithmique</label><br />
+       <input type="checkbox" name="architecture" id="architecture" /> <label for="architecture">Architecture</label>
+    </fieldset>
+		<button type="reset">Nettoyer</button> 
+      </form>
+		<style>
+			#htmlav2_19 button {
+				font-size:24px;
+				}
+			#htmlav2_19 input {
+					font-size:24px;
+					}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_20"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>La balise <code>&lt;button&gt;</code> permet aussi d'intégrer des images</li>
+		</ul>
+		<pre class="next">
+		<code>&lt;form method="post" action="traiter_form.php"&gt;</code>
+		<code>&nbsp;&nbsp;...</code> 
+		<code>&nbsp;&nbsp;&lt;button&gt;&lt;img src="" alt="" /&gt;Soumettre&lt;/button&gt;</code> 
+		<code>&lt;/form&gt;</code>
+		</pre>
+		<style>
+			#htmlav2_20 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_21"><div>
+		<h2>Formulaires</h2>
+		<ul>
+		    <li>La balise <code>&lt;button&gt;</code> permet aussi d'intégrer des images</li>
+		</ul>
+		<form method="post" action="traiter_form.php">
+      <fieldset>
+       <legend>Coordonnées</legend> <!-- Titre du fieldset --> 
+       <label for="nom">Quel est votre nom ?</label>
+       <input type="text" name="nom" id="nom" />
+       <label for="email">Quel est votre e-mail ?</label>
+       <input type="email" name="email" id="email" />
+   </fieldset>
+   <fieldset>
+       <legend>Cours d'informatique préférés</legend> <!-- Titre du fieldset -->
+       <input type="checkbox" name="algorithmique" id="algorithmique" /> <label for="algorithmique">Algorithmique</label><br />
+       <input type="checkbox" name="architecture" id="architecture" /> <label for="architecture">Architecture</label>
+    </fieldset>
+		<button><img src="pictures/trash.png" width="24" alt="" /> Nettoyer</button> 
+      </form>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_22"><div>
+		<h2>Autre utilisation de <code>&lt;button&gt;</code></h2>
+		<ul>
+		    <li><code>&lt;button&gt;</code> est aussi un bouton cliquable hors formulaire</li>
+		</ul>
+		<pre class="next">
+		<code>&lt;button <mark>type="button"</mark>&gt;Enjoliver&lt;/button&gt;</mark></code> 
+   </pre>
+		<style>
+			#htmlav2_22 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_23"><div>
+		<h2>Autre utilisation de <code>&lt;button&gt;</code></h2>
+		<ul>
+		    <li><code>&lt;button&gt;</code> est aussi un bouton cliquable hors formulaire</li>
+		    <li>Il permet d'exécuter des fonctions Javascript</li>
+		</ul>
+		<pre>
+		<code>&lt;button type="button" <mark>onclick="animer()"</mark>&gt;Animer la baballe&lt;/button&gt;</mark></code> 
+   </pre>
+		<style>
+			#htmlav2_23 pre {
+				font-size:20px;
+				}
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide" id="htmlav2_24"><div>
+		<h2>Autre utilisation de <code>&lt;button&gt;</code></h2>
+		<ul>
+		    <li><code>&lt;button&gt;</code> est aussi un bouton cliquable hors formulaire</li>
+		    <li>Il permet d'exécuter des fonctions Javascript</li>
+		</ul>
+		<button type="button" onclick='animer()'>Animer la baballe</button> 
+    <div>
+        <canvas id="canvas" width="400" height="200">
+         Votre navigateur ne supporte pas les canvas HTML5.
+        </canvas>
+    </div>
+
+<script type="text/javascript");>
+var canvas;  
+var ctx;
+var x = 400;
+var y = 200;
+var dx = 2;
+var dy = 4;
+var WIDTH = 400;
+var HEIGHT = 200; 
+
+function circle(x,y,r) {
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI*2, true);
+  ctx.fill();
+}
+
+function rect(x,y,w,h) {
+  ctx.beginPath();
+  ctx.rect(x,y,w,h);
+  ctx.closePath();
+  ctx.fill();
+}
+
+ 
+function clear() {
+  ctx.clearRect(0, 0, WIDTH, HEIGHT);
+}
+
+function animer() {
+  canvas = document.getElementById("canvas");
+  ctx = canvas.getContext("2d");
+  return setInterval(draw, 10);
+}
+
+function draw() {
+  clear();
+  ctx.fillStyle = "pink";
+  rect(0,0,WIDTH,HEIGHT);
+  ctx.fillStyle = "#444444";
+  circle(x, y, 10);
+
+  if (x + dx > WIDTH || x + dx < 0)
+    dx = -dx;
+  if (y + dy > HEIGHT || y + dy < 0)
+    dy = -dy;
+
+  x += dx;
+  y += dy;
+}
+</script>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout" id="av3"><div>
+		<h2><em>Vidéo et audio</em></h2>
+		<style>
+			#av3 h2 { font-size: 80px; }
+		</style>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>Insérer une vidéo</h2>
+		<ul>
+		    <li>La balise en paires <code>&lt;video&gt;</code> permet d'inclure 
+		        des vidéos</li>
+		    <li>Codecs vidéos : H.264, Ogg Theora, WebM</li>
+		</ul>
+        <pre class="next">
+		<code>&lt;video src="./medias/vacances.webm" controls 
+	poster="vacances.jpg" width="600"&gt;Pourquoi 
+	ça ne fonctionne pas ?&lt;/video&gt;</code>
+		</pre>  
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>Insérer une vidéo</h2>
+		<center><video src="./medias/vacances.webm" controls 
+		poster="./pictures/vacances.jpg" width="500">Pourquoi ça ne fonctionne pas ?</video>
+		<p class="note">Mes vacances en &Eacute;cosse (1989)</p></center>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>Insérer une séquence audio</h2>
+		<ul>
+		    <li>La balise en paires <code>&lt;audio&gt;</code> permet d'inclure 
+		        des séquences audios</li>
+		    <li>Codecs audios : MP3, AAC, OGG</li>
+		</ul>
+        <pre class="next">
+		<code>&lt;audio src="./medias/blabla.mp3" controls&gt;Pourquoi 
+	ça ne fonctionne pas ?&lt;/audio&gt;</code>
+		</pre>  
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>Insérer une vidéo YouTube</h2>
+		<ul>La balise en paires <code>&lt;object&gt;</code> permet d'inclure vidéos, sons, etc.
+		    <li>Vidéo  Youtube : https://www.youtube.com/<mark>watch?v=ID_VIDEO</mark></li>
+		</ul>
+        <pre class="next">
+		<code>&lt;object type="text/html" 
+		data="https://www.youtube.com/ <mark>embed/ID_VIDEO</mark>" 
+		style="width:640px;height:385px;"&gt;&lt;/object&gt;</code>
+		</pre>  
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>Insérer une vidéo YouTube</h2>
+		<center><object type="text/html" data="https://www.youtube.com/embed/oavMtUWDBTM" style="width:640px;height:385px;"></object> 
+		<p class="note">Édouard Khil : "Trololo" (1976)</p></center>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>Et le plein écran ?</h2>
+		<ul><li>La balise <code>&lt;iframe&gt;</code> est adaptée au plein écran</li></ul>
+        <pre class="next">
+		<code>&lt;iframe 
+  src="https://www.youtube.com/embed/oavMtUWDBTM" 
+  style="width:640px;height:385px;" 
+  <mark>allowfullscreen</mark>&gt;Votre navigateur ne supporte rien !
+&lt;/iframe&gt;</code>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>Et le plein écran ?</h2>
+		<center><iframe src="https://www.youtube.com/embed/oavMtUWDBTM" style="width:640px;height:385px;" allowfullscreen></iframe>
+		<p class="note">Édouard Khil : "Trololo" (1976)</p></center>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>Plus loin avec les images</h2>
+		<ul>
+		    <li>Faire des zooms en jouant sur le sélecteur <code>hover</code> et la
+				propriété <code>transform</code></li>
+		    <li class="next">La fonction <code>scale()</code> permet de modifier l'échelle</li>
+		</ul>
+        <pre class="next">
+		<code>img:hover {
+  transform: scale(1.25);
+}</code>
+		</pre>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide"><div>
+		<h2>Plus loin avec les images</h2>
+		<ul>
+		    <li>Cartographier les images avec les balises en paire 
+				<code>map</code> et <code>area</code></li>
+		</ul>
+	</div></section>
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+	<section class="slide shout" id="SeeMore"><div>
+		<h2><img src="pictures/logoDorian.png" alt="">&nbsp;<a href="http://frosch74.free.fr">frosch74.free.fr</a></h2>
+		<style>
+			#Picture h2 {
+				color:#FFF;
+				}
+			#SeeMore h2 {
+				font-size:100px
+				}
+			#SeeMore img {
+				width:0.90em;
+				height:0.72em;
+				}
+		</style>
+	</div></section>
+	<p class="badge"><a href="http://frosch74.free.fr">frosch74.free.fr</a></p>
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"><div></div></div>
+	<script src="shower/shower.min.js"></script>
+	<!-- Copyright © 2015 Alain Lebret -->
+</body>
+</html>
