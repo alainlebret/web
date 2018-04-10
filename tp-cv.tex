@@ -1,0 +1,233 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            CONCEPTION DE SITES WEB 
+%  Cours proposé à l'ENSICAEN en spécialité informatique 1ère année (2014-2015)
+%  puis au lycée Dorian de Paris en BTS SN-IR 1ère année (2015-2016)
+%                                    2014-2015
+%                                  Alain Lebret
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% Disponible sur GitHub : https://github.com/frosch74/web
+% Mis à disposition selon les termes de la licence Creative Commons :
+% CC BY-NC-SA 4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper,12pt]{article}
+\usepackage[frenchb]{babel}
+\usepackage[T1]{fontenc}
+%%%
+\newif\ifTRUETYPE % Test pour l'utilisation des polices True Type comme Calibri utilisée dans la charte ENSICAEN
+\TRUETYPEtrue
+%\TRUETYPEfalse
+\ifTRUETYPE
+\else
+  \usepackage[utf8]{inputenc}
+\fi
+%%%
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage[table]{xcolor}
+\usepackage[hmargin=3cm,bottom=5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{amsmath,amsfonts,amssymb}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Utilisation de polices True Type à la place des polices LaTeX traditionnelles
+% Le package "inputenc" doit être enlevé et le fichier doit être compilé avec
+% XeLaTeX
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifTRUETYPE
+\usepackage{fontspec}
+\setmainfont{Calibri} 
+\setmonofont[SmallCapsFont={Latin Modern Mono Caps}]{Latin Modern Mono Light}
+\fi
+%%%
+
+\pagestyle{fancy}
+\renewcommand{\headrule}{\relax}
+\setlength{\headheight}{70pt}
+\fancyhf{}
+\lhead{}
+\rhead{\includegraphics[height=\headheight]{logoEcole.jpg}}
+\lfoot{\textit{A. Lebret}\\\includegraphics[height=0.52\headheight]{vague2013seule.jpg}
+}
+\rfoot{\thepage}
+
+\definecolor{couleur_code}{RGB}{90,90,90} 
+\newcommand\Code[1]{\textcolor{couleur_code}{\texttt{#1}}}
+\newcounter{Question}
+\setcounter{Question}{1}
+\newcommand\Question{\vspace{5pt}\textbf{Question \arabic{Question}\addtocounter{Question}{1}.~~}}
+\makeatletter
+\newcommand{\Qlabel}[1]{\addtocounter{Question}{-1}\protected@write \@auxout {}{\string \newlabel {#1}{{\arabic{Question}}{}}}\addtocounter{Question}{1}}
+
+\newcounter{Exercice}
+\setcounter{Exercice}{1}
+\newcommand\Exercice{\vspace{5pt}\textbf{Exercice \arabic{Exercice}\addtocounter{Exercice}{1}.~~}}
+\makeatletter
+\newcommand{\Qlabele}[1]{\addtocounter{Exercice}{-1}\protected@write \@auxout {}{\string \newlabel {#1}{{\arabic{Exercice}}{}}}\addtocounter{Exercice}{1}}
+\makeatother
+
+\newif\ifCORRECTION % Test pour l'affichage des corrections
+%\CORRECTIONtrue
+\CORRECTIONfalse
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}\parindent0pt\parskip\smallskipamount
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+  \textbf{\large{Conception de sites Web - TP \no ~1}}\par\smallskip
+  \textbf{Votre curriculum vit\ae~ en ligne avec HTML et CSS}
+\end{center}\bigskip
+
+\textbf{Objectif~:~} Dans ce TP, vous aurez à réalisez une page Web présentant
+votre curriculum vit\ae ~et respectant les standards HTML5 et CSS3.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Prise en main}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\`{A} la racine de votre répertoire utilisateur, vous disposez du 
+sous-répertoire \Code{public\_html} dans lequel vous placerez les fichiers
+de votre site Web personnel au fur et à mesure de son évolution. 
+\Code{public\_html} correspondra donc au répertoire racine de votre site 
+accessible depuis l'URL : \texttt{http://www.ecole.ensicaen.fr/\textasciitilde 
+identifiant/}. 
+
+Vérifiez tout d'abord que votre répertoire de travail \Code{public\_html}
+est bien accessible à tout le monde en lecture, puis créez le sous-répertoire
+\Code{styles} dans lequel vous placerez à l'avenir vos différentes feuilles
+de styles.
+  
+\Exercice\\
+Dans votre répertoire de travail, créez un fichier appelé \Code{page1.html},
+par exemple avec le titre \og{}Une page minimaliste\fg{} (balise en paires 
+\Code{<title>} dans l'en-tête) et contenant dans le corps le texte 
+\og{}Bonjour à tous !\fg{} en titre de niveau 1 (balise en paires 
+\Code{<h1>}). 
+Vous pouvez également expérimenter d'autres balises que vous connaissez
+(paragraphes, listes, etc.).
+
+Validez votre page avec l'outil en ligne de l'organisme W3C que
+l'on trouve à l'adresse \texttt{http://validator.w3.org}. 
+La page sera considérée comme valide si l'outil affiche \og{}This document was
+successfully checked as HTML5!\fg{}.
+Visualisez alors votre page à l'aide d'un ou de plusieurs navigateurs (Firefox,
+Chrome, Lynx, Internet Explorer, versions mobiles, etc.).
+
+On rappelle qu'un document HTML5 minimal est constitué comme suit :
+\begin{verbatim}
+<!DOCTYPE html>
+<html lang="fr">
+   <head>
+      <meta charset="utf-8" />
+      <title>Un titre</title>
+   </head>
+   <body>
+   </body>
+</html>
+\end{verbatim}
+
+\Exercice\\
+Réalisez une feuille de styles \Code{page1.css} que vous placerez dans le 
+sous-répertoire \Code{styles} préalablement créé et que vous associerez à 
+votre fichier \Code{page1.html}. 
+Cette feuille de styles devra au minimum mettre en forme le titre de niveau
+1 en modifiant la police de caractères, sa taille et sa couleur.
+Votre feuille de style devra être validée sur l'outil en ligne 
+\texttt{http://jigsaw.w3.org/css-validator/} puis testée en visualisant 
+à nouveau \Code{page1.html} à l'aide d'un ou de plusieurs navigateurs.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Création de votre CV en ligne}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+La réalisation de votre curriculum vit\ae ~en ligne devra respecter les
+standards HTML5 et CSS3.  
+
+\subsection{Contenu du CV}
+
+Les éléments que vous voudrez voir apparaître dans votre curriculum vit\ae 
+~seront contenus dans le fichier \Code{cv\_fr.html} placé à la racine de votre
+ site. Il devra être principalement structuré à l'aide des balises sémantiques
+\Code{<header>}, \Code{<section>}, \Code{<article>} et \Code{<footer>} que 
+nous avons rencontrées dans le cours. 
+Les balises \texttt{<nav>} et \texttt{<aside>} seront quant à elles utilisées
+lors les prochaines séances.
+
+\Exercice\\
+Proposez une structure HTML qui permettra de placer dans l'en-tête
+ (\texttt{<header>}) vos prénom, nom, qualificatif vous décrivant
+professionnellement, coordonnées, âge, voire une photographie. Le pied de page 
+(\texttt{<footer>}) permettra d'indiquer des liens éventuels vers vos pages 
+Facebook, Twitter, etc.. 
+Le corps du curriculum vit\ae ~sera quant à lui constitué de six sections
+(\Code{<section>}) correspondant à vos objectifs, votre formation, votre
+expérience professionnelle, vos compétences (en informatique), les langues 
+que vous parlez ainsi que vos intérêts et autres activités. Chaque section 
+sera munie d'un titre de niveau 1 permettant de la décrire 
+(\og{}prénom + nom\fg{}, \og{}objectifs\fg{}, \og{}formation\fg{}, etc.) et
+éventuellement d'un titre de niveau 2, par exemple pour le qualificatif
+professionnel ou bien les différents types d'autres activités (voir 
+l'exemple de la figure ~\ref{fig:css1}).
+Enfin, chaque formation ou expérience professionnelle sera décrite dans un 
+article (\Code{<article>}) muni au moins d'un titre de niveau 1.
+Validez votre document et visualisez le résultat.
+
+Remarque 1 : Les dates et durées peuvent être judicieusement structurées à
+l'aide de la balise \Code{<time>}.
+
+Remarque 2 : La balise universelle \Code{<div>} ne devrait pas être employée
+dans votre document. Un emploi minimal peut toutefois être accordé s'il est
+justifié.
+
+\subsection{Mise en forme du CV}
+Il est temps de passer à la mise en forme de votre curriculum vit\ae ~en
+utilisant les feuilles de styles CSS. 
+
+\Exercice\\
+Nous vous proposons de réaliser une feuille de styles \Code{cv1.css} que
+vous placerez dans le sous-répertoire \Code{styles} préalablement créé et 
+que vous associerez à votre fichier \Code{cv\-\_fr.html}. 
+La mise en page attendue est du même type que celle qui vous est proposée 
+sur la figure~\ref{fig:css1}. Les marges, espacements, couleurs, polices 
+et mise en valeur du texte sont de votre ressort en accord avec vos goûts.
+
+Validez votre feuille de styles et visualisez votre curriculum vit\ae 
+~depuis différents navigateurs.
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{pictures/image-cv1-css.png} 
+    \caption{Exemple de mise en forme avec \Code{cv1.css}}
+    \label{fig:css1} 
+  \end{center}
+\end{figure}
+
+\subsection{Changer la mise en forme}
+L'intérêt de dissocier le fond de la forme, est que vous devriez pouvoir
+assez facilement changer la mise en page de votre curriculum vit\ae ~en 
+remplaçant la feuille de styles précédente.
+
+\Exercice\\
+Nous vous proposons de réaliser la feuille de styles \Code{cv2.css} que 
+vous associerez à votre fichier \Code{cv\_fr.html}. 
+La mise en page attendue sera du même type que celle qui vous est proposée
+sur la figure~\ref{fig:css2}.
+
+Validez votre feuille de styles et visualisez votre curriculum vit\ae 
+~depuis différents navigateurs.
+
+
+\subsection{Pourquoi pas une version anglaise ?}
+
+\Exercice\\ 
+Traduisez votre curriculum vit\ae ~en anglais et nommez votre fichier 
+\Code{cv\_en.html}. Modifiez le pied de page de votre structure HTML de
+manière à insérer les images réduites de drapeaux français et anglais
+auxquels vous associerez à un lien vers les pages correspondantes. 
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{pictures/image-cv2-css.png} 
+    \caption{Exemple de mise en forme avec \Code{cv2.css}}
+    \label{fig:css2} 
+  \end{center}
+\end{figure}
+
+\end{document}
